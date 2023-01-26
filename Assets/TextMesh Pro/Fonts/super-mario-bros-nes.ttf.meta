@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5a08524251d5ad746af7f2fd04905a1d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Super Mario Bros. NES
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 89fb35df3df783a4bae8902fc1a44209, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     /// <param name="newState"></param>
     public void RequestStateChange(int newState)
     {
-        
+        GameManager.Instance.RequestStateChange((GameManager.GameStates)newState);
     }
     /// <summary>
     /// Update in game HUD

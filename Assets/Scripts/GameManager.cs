@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Level settings: Remaining time
     /// </summary>
-    private float _remainingTime;
+    private float _remainingTime = 60;
     #endregion
 
     #region methods
