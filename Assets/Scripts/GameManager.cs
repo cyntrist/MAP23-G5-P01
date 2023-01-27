@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _currentState = GameStates.GAME; // Valor dummy
+        _currentState = GameStates.GAMEOVER; // Valor dummy
         _nextState = GameStates.START; // Estado inicial, es diferente al current para que el EnterState del primer update se realice
     }
 
