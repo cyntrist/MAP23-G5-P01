@@ -5,65 +5,36 @@ public class GameManager : MonoBehaviour
     public enum GameStates { START, GAME, GAMEOVER };
 
     #region references
-    /// <summary>
-    /// Reference to UI Manager
-    /// </summary>
     private UIManager _UIManager;
-    /// <summary>
-    /// Reference to player
-    /// </summary>
     [SerializeField] GameObject _player;
     #endregion
 
     #region properties
-    /// <summary>
-    /// Game manager instance
-    /// </summary>
-    static private GameManager _instance;
-    /// <summary>
-    /// Public reference to GameManager instance / MÉTODO GETTER para recibir el valor en otros scripts
-    /// </summary>
-    static public GameManager Instance { get { return _instance; } }
-    /// <summary>
-    /// Current game state
-    /// </summary>
+    private static GameManager _instance;
     private GameManager.GameStates _currentState;
-    /// <summary>
-    /// Next game state
-    /// </summary>
     private GameManager.GameStates _nextState;
-    /// <summary>
-    /// Public access to Current State / MÉTODO GETTER para recibir el valor en otros scripts
-    /// </summary>
-    public GameManager.GameStates CurrentState { get { return _currentState; } }
-    /// <summary>
-    /// Level settings: Remaining time
-    /// </summary>
     private float _remainingTime = 60;
+    private int _score;
+    public static GameManager Instance { get { return _instance; } }
+    public GameManager.GameStates CurrentState { get { return _currentState; } }
+    public int Score {  get { return _score; } }
     #endregion
 
     #region methods
-    /// <summary>
-    /// Public method to register UI Manager
-    /// </summary>
+    // BLOQUE DE REGISTROS DE REFERENCIAS 
     /// <param name="uiManager">UI manager to register</param>
-
     public void RegisterUIManager(UIManager uiManager)
     {
         _UIManager = uiManager;
     }
 
-    /// <summary>
-    /// GameManager instance initialization
-    /// </summary>
-    private void Awake()
+    // BLOQUE DE JUEGO 
+    public void AddScore(int points) // Solo add porque creo que nunca resta
     {
-        _instance = this; // Para que éste GameManager sea accesible a través de GameManager.Instance en otros scripts y objetos
+        _score += points;
     }
 
-    /// <summary>
-    /// Method to be called when game enters a new state
-    /// </summary>
+    // BLOQUE DE MÁQUINA DE ESTADOS 
     /// <param name="newState">New state</param>
     public void EnterState(GameStates newState)
     {
@@ -83,20 +54,16 @@ public class GameManager : MonoBehaviour
         _currentState = newState; // Finaliza el cambio
         Debug.Log("CURRENT: " + _currentState);
     }
-    /// <summary>
-    /// Methods to be called when a game state is exited
-    /// </summary>
+
     /// <param name="newState">Exited game state</param>
     private void ExitState(GameStates newState)
     {
-        if (newState == GameStates.GAME) // simplemente quita el nivel y el jugador en GAME porque en el resto de estados no hace falta nada más?
+        if (newState == GameStates.GAME) 
         {
-            
+            //
         }
     }
-    /// <summary>
-    /// Method called to uptate the game manager according to the current state
-    /// </summary>
+
     /// <param name="state">Current game state</param>
     private void UpdateState(GameStates state)
     {
@@ -113,32 +80,28 @@ public class GameManager : MonoBehaviour
             _UIManager.UpdateGameHUD(); // Actualiza la información del HUD cada frame
         }
     }
-    /// <summary>
-    /// Public method for other scripts to request a game state change
-    /// </summary>
+
     /// <param name="newState">Requested state</param>
     public void RequestStateChange(GameManager.GameStates newState)
     {
-        _nextState = newState;  // Método público para cambiar el valor privado de estado / podría llamarse SetNewState tambien?
+        _nextState = newState;  // Método público para cambiar el valor privado de estado 
     }
     #endregion
 
-    /// <summary>
-    /// Game state initialization
-    /// </summary>
+    private void Awake()
+    {
+        _instance = this; // Para que éste GameManager sea accesible a través de GameManager.Instance en otros scripts y objetos
+    }
+
     void Start()
     {
-        _currentState = GameStates.GAMEOVER; // Valor dummy
+        _currentState = GameStates.GAMEOVER; // Valor dummy para que se realice el cambio nada más empezar
         _nextState = GameStates.START; // Estado inicial, es diferente al current para que el EnterState del primer update se realice
     }
 
-    /// <summary>
-    /// Game state transition management.
-    /// Current game state update call.
-    /// </summary>
     void Update()
     {
-        if (_nextState != _currentState) // Si se requiere cambiar de estado ( si current == next es que seguimos en el mismo)
+        if (_nextState != _currentState) // Si se requiere cambiar de estado (si current == next es que seguimos en el mismo)
         {
             EnterState(_nextState); // Entramos al siguiente estado
         }

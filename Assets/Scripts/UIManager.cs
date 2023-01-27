@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -45,7 +44,7 @@ public class UIManager : MonoBehaviour
     /// <param name="remainingTime">Current remaining time</param>
     public void UpdateGameHUD() // Actualiza en cada frame el valor del tiempo y las manzanas
     {
-        
+
     }
     /// <summary>
     /// Sets up HUD after Level's load
@@ -55,7 +54,7 @@ public class UIManager : MonoBehaviour
     /// <param name="remainingTime">Remaining time</param>
     public void SetUpGameHUD() // Actualiza *sólo cada vez que se carga un nivel* los datos de ese nivel (Ronda y meta)
     {
-        
+
     }
     /// <summary>
     /// Sets the required menu according to Game State
