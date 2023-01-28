@@ -65,7 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4773873050724909463}
-  - {fileID: 4773873051304926856}
+  - {fileID: 1592269211822911136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  m_GroundCheck: {fileID: 4773873051304926856}
+  m_GroundCheck: {fileID: 0}
   m_CeilingCheck: {fileID: 4773873050724909463}
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
@@ -210,7 +210,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6491708, y: 3.32}
   m_EdgeRadius: 0
---- !u!1 &4773873051304926859
+--- !u!1 &6736343381035117226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4773873051304926856}
+  - component: {fileID: 1592269211822911136}
   m_Layer: 0
   m_Name: Piesesitos
   m_TagString: Untagged
@@ -226,15 +226,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4773873051304926856
+--- !u!4 &1592269211822911136
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773873051304926859}
+  m_GameObject: {fileID: 6736343381035117226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.48, z: 0}
+  m_LocalPosition: {x: 0.21, y: -1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
