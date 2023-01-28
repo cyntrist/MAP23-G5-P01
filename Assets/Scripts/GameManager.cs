@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (newState == GameStates.GAME) 
         {
-            //
+            //ª
         }
     }
 
