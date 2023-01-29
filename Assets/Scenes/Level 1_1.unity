@@ -527,11 +527,6 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 4773873051300140556, guid: 630058b0d2bf89e4ab781d6d7f102abe, type: 3}
   m_PrefabInstance: {fileID: 47040123}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1041240831 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4773873051300140658, guid: 630058b0d2bf89e4ab781d6d7f102abe, type: 3}
-  m_PrefabInstance: {fileID: 47040123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1047594471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1592269211822911136, guid: 630058b0d2bf89e4ab781d6d7f102abe, type: 3}
@@ -925,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f3f033c2d809549b67be5a8eb46408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 1041240831}
+  _player: {fileID: 1041240815}
   _cameraOffset: {x: 0, y: 0, z: -3}
 --- !u!1001 &2089765831
 PrefabInstance:
