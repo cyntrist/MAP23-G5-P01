@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     private GameManager.GameStates _nextState;
     private float _remainingTime = 60;
     private int _score;
+    private int _coins;
     public static GameManager Instance { get { return _instance; } }
     public GameManager.GameStates CurrentState { get { return _currentState; } }
     public int Score {  get { return _score; } }
+    public int Coins { get { return _coins; } }
     #endregion
 
     #region methods
@@ -45,7 +47,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.GAME:
                 _UIManager.SetMenu(GameStates.GAME);
-                _UIManager.SetUpGameHUD(); // Inicializa el HUD
+                _UIManager.SetUpGameHUD(_remainingTime) ; // Inicializa el HUD
                 break;
             case GameStates.GAMEOVER:
                 _UIManager.SetMenu(GameStates.GAMEOVER);
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
                 _nextState = GameStates.GAMEOVER;
             }
 
-            _UIManager.UpdateGameHUD(); // Actualiza la información del HUD cada frame
+            _UIManager.UpdateGameHUD(_score, _coins, _remainingTime); // Actualiza la información del HUD cada frame
         }
     }
 
