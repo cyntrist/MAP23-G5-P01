@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         _score += points;
     }
 
+    public void AddCoins(int coins) // Solo add porque creo que nunca resta
+    {
+        _coins += coins;
+    }
+
     // BLOQUE DE MÁQUINA DE ESTADOS 
     /// <param name="newState">New state</param>
     public void EnterState(GameStates newState)
