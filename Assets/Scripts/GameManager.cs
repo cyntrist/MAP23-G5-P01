@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,7 +7,9 @@ public class GameManager : MonoBehaviour
 
     #region references
     private UIManager _UIManager;
+    private LevelManager _levelManager;
     [SerializeField] GameObject _player;
+    [SerializeField] GameObject _level;
     #endregion
 
     #region properties
@@ -15,17 +18,22 @@ public class GameManager : MonoBehaviour
     private GameManager.GameStates _nextState;
     private float _remainingTime = 60;
     private int _score;
+    private int _coins;
     public static GameManager Instance { get { return _instance; } }
     public GameManager.GameStates CurrentState { get { return _currentState; } }
     public int Score {  get { return _score; } }
+    public int Coins { get { return _coins; } }
     #endregion
 
     #region methods
     // BLOQUE DE REGISTROS DE REFERENCIAS 
-    /// <param name="uiManager">UI manager to register</param>
     public void RegisterUIManager(UIManager uiManager)
     {
         _UIManager = uiManager;
+    }
+    public void RegisterLevelManager(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
     }
 
     // BLOQUE DE JUEGO 
@@ -34,8 +42,12 @@ public class GameManager : MonoBehaviour
         _score += points;
     }
 
+    public void AddCoins(int coins) // Solo add porque creo que nunca resta
+    {
+        _coins += coins;
+    }
+
     // BLOQUE DE MÁQUINA DE ESTADOS 
-    /// <param name="newState">New state</param>
     public void EnterState(GameStates newState)
     {
         switch (newState) // Diferentes comportamientos según estado al que se entra
@@ -44,8 +56,9 @@ public class GameManager : MonoBehaviour
                 _UIManager.SetMenu(GameStates.START);
                 break;
             case GameStates.GAME:
+                LoadLevel();
                 _UIManager.SetMenu(GameStates.GAME);
-                _UIManager.SetUpGameHUD(); // Inicializa el HUD
+                _UIManager.SetUpGameHUD(_remainingTime) ; // Inicializa el HUD
                 break;
             case GameStates.GAMEOVER:
                 _UIManager.SetMenu(GameStates.GAMEOVER);
@@ -55,7 +68,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("CURRENT: " + _currentState);
     }
 
-    /// <param name="newState">Exited game state</param>
     private void ExitState(GameStates newState)
     {
         if (newState == GameStates.GAME) 
@@ -64,7 +76,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <param name="state">Current game state</param>
     private void UpdateState(GameStates state)
     {
         if (_currentState == GameStates.GAME) // En el resto de estados no hace falta nada de momento
@@ -77,14 +88,23 @@ public class GameManager : MonoBehaviour
                 _nextState = GameStates.GAMEOVER;
             }
 
-            _UIManager.UpdateGameHUD(); // Actualiza la información del HUD cada frame
+            _UIManager.UpdateGameHUD(_score, _coins, _remainingTime); // Actualiza la información del HUD cada frame
         }
     }
 
-    /// <param name="newState">Requested state</param>
     public void RequestStateChange(GameManager.GameStates newState)
     {
         _nextState = newState;  // Método público para cambiar el valor privado de estado 
+    }
+
+    private void LoadLevel()
+    {
+        Instantiate(_level, Vector3.zero, Quaternion.identity);
+
+        // Setting the player up
+        _levelManager = _level.GetComponent<LevelManager>();
+        _levelManager.SetPlayer(_player);
+        _player.SetActive(true);
     }
     #endregion
 

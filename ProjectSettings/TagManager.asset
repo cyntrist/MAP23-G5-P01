@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Brick
   - Enemy
+  - Piesesitos
+  - Cabesita
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Comprobador
   - 
   - 
   - 
@@ -41,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3707915111
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
