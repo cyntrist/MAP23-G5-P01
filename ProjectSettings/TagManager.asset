@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Piesesitos
   - Cabesita
+  - HaserseGrandesito
   layers:
   - Default
   - TransparentFX
