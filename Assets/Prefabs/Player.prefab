@@ -175,9 +175,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  m_GroundCheck: {fileID: 0}
+  m_GroundCheck: {fileID: 1592269211822911136}
   m_CeilingCheck: {fileID: 4773873050724909463}
   m_CrouchDisableCollider: {fileID: 0}
+  m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
