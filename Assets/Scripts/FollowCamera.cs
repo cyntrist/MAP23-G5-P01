@@ -38,7 +38,7 @@ public class FollowCamera : MonoBehaviour
     {
         if (_playerTransform.position.x >= _cameraTransform.position.x && Physics2D.Raycast(_playerTransform.position, _direction, Mathf.Infinity, _myLayerMask))
         {
-            _cameraTransform.position = new Vector3(_playerTransform.position.x, 0, 0) + _cameraOffset;
+            _cameraTransform.position = new Vector3(_playerTransform.position.x, 6.72f, 0) + _cameraOffset;
         }
     }
 }
