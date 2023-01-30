@@ -11,35 +11,32 @@ public class PowerupController : MonoBehaviour
 
     #region parameters
     [SerializeField]
-    private float _powerupTime;
-    [SerializeField]
     private int _escalaPowerup;
 
     private Vector3 _escala;
     #endregion
 
     #region methods
-
-    private void OnCollisionEnter(Collision collision)
+    public void powerUpGrande()
     {
-        if (collision.gameObject.tag == "HaserseGrandesito")
-        {
-            Debug.Log("aaaaa");
-            _myTransform.localScale = _myTransform.localScale * _escalaPowerup;
-            Invoke ("powerDown", _powerupTime);
-            Debug.Log("eeeee");
-        }
-        if (collision.gameObject.tag == "disparaFuego")
-        {
-            //_myDisparaFuego.SetActive(True);
-          Invoke("powerDown", _powerupTime);
-        }
+        _myTransform.localScale = _myTransform.localScale * _escalaPowerup;
     }
 
-    private void powerDown()
+    public void powerDownGrande()
     {
         _myTransform.localScale = _escala;
+    }
+
+    public void powerUpFuego()
+    {
+        //_myDisparaFuego.SetActive(true)
+        return;
+    }
+
+    private void powerDownFire()
+    {
         //_myDisparaFuego.SetActive(false);
+        return; //todos los returns son para que no de error, hay que quitarlos cuando se acabe el código.
     }
 
     #endregion
