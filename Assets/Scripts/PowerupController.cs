@@ -13,7 +13,7 @@ public class PowerupController : MonoBehaviour
     [SerializeField]
     private int _escalaPowerup;
 
-    private Vector3 _escala;
+    private Vector3 _escala; //no seria vector2?
     #endregion
 
     #region methods
