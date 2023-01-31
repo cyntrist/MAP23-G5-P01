@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4773873050724909463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cabesita
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4773873051300140558}
   - component: {fileID: 4773873051300140559}
   - component: {fileID: 4773873051300140556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
     m_Bits: 8
   m_GroundCheck: {fileID: 1592269211822911136}
   m_CeilingCheck: {fileID: 4773873050724909463}
-  m_CrouchDisableCollider: {fileID: 0}
+  m_CrouchDisableCollider: {fileID: 4773873051300140556}
   m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1592269211822911136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piesesitos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
