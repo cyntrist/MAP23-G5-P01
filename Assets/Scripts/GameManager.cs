@@ -103,8 +103,6 @@ public class GameManager : MonoBehaviour
 
         // Setting the player up
         _levelManager = _level.GetComponent<LevelManager>();
-        _levelManager.SetPlayer(_player);
-        _player.SetActive(true);
     }
     #endregion
 
