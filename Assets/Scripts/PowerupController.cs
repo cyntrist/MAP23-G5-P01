@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class PowerupController : MonoBehaviour
 {
-    #region references
-    //private DisparaFuego _myDisparaFuego
-    private Transform _myTransform;
-    #endregion
 
     #region parameters
     [SerializeField]
     private int _escalaPowerup;
 
-    private Vector3 _escala; //no seria vector2?
     #endregion
 
     #region methods
     public void powerUpGrande()
     {
-        _myTransform.localScale = _myTransform.localScale * _escalaPowerup;
+        gameObject.transform.localScale *= _escalaPowerup;
     }
 
     public void powerDownGrande()
     {
-        _myTransform.localScale = _escala;
+        gameObject.transform.localScale = Vector2.one;
     }
 
     public void powerUpFuego()
@@ -43,9 +38,6 @@ public class PowerupController : MonoBehaviour
 
     void Start()
     {
-        _myTransform = GetComponent<Transform>();
-        _escala= _myTransform.localScale;
         //_myDisparaFuego= _player.GetComponent<DisparaFuego>;
-
     }
 }

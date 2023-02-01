@@ -9,7 +9,8 @@ TagManager:
   - Enemy
   - Piesesitos
   - Cabesita
-  - HaserseGrandesito
+  - BrickBase
+  - Powerup
   layers:
   - Default
   - TransparentFX

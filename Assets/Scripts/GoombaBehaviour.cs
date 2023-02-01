@@ -33,10 +33,10 @@ public class GoombaBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
 
-        if (col.gameObject.CompareTag("Ground"))
+        /*if (col.gameObject.CompareTag("Ground")) innecesario
         {
             return;
-        }
+        }*/
         _derecha = !_derecha;
         if (col.gameObject.CompareTag("Player"))
         {
