@@ -84,7 +84,10 @@ public class CharacterController2D : MonoBehaviour
                 {
                     m_wasCrouching = true;
                     OnCrouchEvent.Invoke(true);
-                    transform.localScale = new Vector3(1, 0.5f, 1);
+                    Vector3 theScale = transform.localScale;
+                    theScale.y *= 0.5f;
+                    transform.localScale = theScale;
+                    transform.position = m_GroundCheck.position;
                 }
 
                 // Reduce the speed by the crouchSpeed multiplier
@@ -104,7 +107,9 @@ public class CharacterController2D : MonoBehaviour
                 {
                     m_wasCrouching = false;
                     OnCrouchEvent.Invoke(false);
-                    transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 theScale = transform.localScale;
+                    theScale.y /= 0.5f;
+                    transform.localScale = theScale;
                 }
             }
 
