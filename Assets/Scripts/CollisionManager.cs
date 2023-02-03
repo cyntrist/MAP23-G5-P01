@@ -33,7 +33,7 @@ public class CollisionManager : MonoBehaviour
                 } //si estabamos en fuego 
             }
 
-            else if (collision.gameObject.tag == "BrickBase" && CurrentPowerState >= PowerupStates.grandote) //si tocamos brickbase
+            else if (collision.gameObject.tag == "BrickBase" && CurrentPowerState >= PowerupStates.grandote) //si tocamos brickbase 
             {
                 Destroy(collision.gameObject.transform.parent.gameObject); //se destruye el brick (padre)
             } 
