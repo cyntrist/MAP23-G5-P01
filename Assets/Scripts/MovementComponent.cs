@@ -5,7 +5,7 @@ public class MovementComponent : MonoBehaviour
 
     public CharacterController2D controller;
 
-    public float runSpeed = 40f;
+    public float runSpeed = 1f;
 
     float horizontalMove = 0f;
     bool jump = false;
@@ -31,12 +31,21 @@ public class MovementComponent : MonoBehaviour
             crouch = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            runSpeed += 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            runSpeed -= 1;
+        }
+
     }
 
     void FixedUpdate()
     {
         // Move our character
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, crouch, jump);
         jump = false;
     }
 }
