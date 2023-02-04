@@ -4,8 +4,9 @@ public class MovementComponent : MonoBehaviour
 {
 
     public CharacterController2D controller;
+    public Animator animator;
 
-    public float runSpeed = 1f;
+    public float runSpeed;
 
     float horizontalMove = 0f;
     bool jump = false;
@@ -40,6 +41,27 @@ public class MovementComponent : MonoBehaviour
             runSpeed -= 1;
         }
 
+        // Animator (Lo he tenido que meter aquí porque desde el GameManager no podía, mis disculpas, no hay conflictos que haya visto -Cynthia)
+        if (animator!= null)
+        {
+            if (horizontalMove != 0)
+            {
+                animator.SetTrigger("caminando");
+            }
+            else
+            {
+                animator.ResetTrigger("caminando");
+            }
+
+            if (jump)
+            {
+                animator.SetTrigger("saltando");
+            }
+            else
+            {
+                animator.ResetTrigger("saltando");
+            }
+        }
     }
 
     void FixedUpdate()
@@ -47,5 +69,10 @@ public class MovementComponent : MonoBehaviour
         // Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, crouch, jump);
         jump = false;
+    }
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 }

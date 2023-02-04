@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4773873051300140559}
   - component: {fileID: 3091480303300658386}
   - component: {fileID: 6896259849917492060}
+  - component: {fileID: 7206110628009000039}
   m_Layer: 7
   m_Name: Mario
   m_TagString: Player
@@ -225,6 +226,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.15921374}
   m_EdgeRadius: 0
+--- !u!95 &7206110628009000039
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4773873051300140662}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7f9c2b4477362948a838378c82c0e6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6736343381035117226
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,8 +127,9 @@ public class GameManager : MonoBehaviour
 
     private void UnloadLevel() // Lo destruye y ya
     {
-        Destroy(_level);
+        DestroyImmediate(_level, true);
     }
+
     #endregion
 
     private void Awake()
