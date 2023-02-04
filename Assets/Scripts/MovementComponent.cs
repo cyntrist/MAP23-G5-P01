@@ -23,7 +23,7 @@ public class MovementComponent : MonoBehaviour
             jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && GameManager._marioState != GameManager.MarioStates.PEQUE)
         {
             crouch = true;
         }

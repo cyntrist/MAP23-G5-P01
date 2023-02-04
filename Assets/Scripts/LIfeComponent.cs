@@ -5,7 +5,6 @@ using UnityEngine;
 public class LifeComponent : MonoBehaviour
 {
     public static bool _death;
-    private float cd = 0.5f;
     GameObject _enemy;
     // Start is called before the first frame update
     void Start()

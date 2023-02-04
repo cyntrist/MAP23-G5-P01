@@ -11,6 +11,7 @@ public class CollisionManager : MonoBehaviour
     private PowerupController _myPowerupController;
     private MysteryBlockComponent _myMysteryBlock;
     private FlagComponent _myFlag;
+    [SerializeField] private GameObject _goomba;
     #endregion
 
     #region Methods
@@ -18,7 +19,7 @@ public class CollisionManager : MonoBehaviour
     {
 
         if (collision.gameObject.tag == "Seta" && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
-        {         
+        {
             _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)
             Destroy(collision.gameObject);
         }
@@ -41,9 +42,15 @@ public class CollisionManager : MonoBehaviour
             _myFlag.EndOfLevel();
         }
 
-        else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
+        else if (collision.gameObject.tag == "Enemy" && collision.gameObject.tag != "Cabeza") //si tocamos enemy
         {
-            if(GameManager.MarioState == GameManager.MarioStates.GRANDE)
+            Destroy(_goomba);
+        }
+
+        else if (collision.gameObject.tag == "Enemy" && collision.gameObject.tag == "Cabeza") //si tocamos enemy
+        {
+
+            if (GameManager.MarioState == GameManager.MarioStates.GRANDE)
             {
                 _myPowerupController.powerDownGrande();
             }

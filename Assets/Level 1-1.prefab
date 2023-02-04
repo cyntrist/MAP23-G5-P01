@@ -4211,10 +4211,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MysteryBlock (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8431173026448399112, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}
 --- !u!4 &1587062829647535609 stripped
@@ -8199,6 +8195,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3220535172470842953, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216093554811768631, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8711281
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216093554811768631, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}
+      propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8431173026448399112, guid: 83d134337b07aed44b0ece79bfed4877, type: 3}

@@ -16,6 +16,7 @@ TagManager:
   - Flag
   - Seta
   - Void
+  - Cabeza
   layers:
   - Default
   - TransparentFX
