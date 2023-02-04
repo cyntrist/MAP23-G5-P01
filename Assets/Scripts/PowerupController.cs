@@ -7,7 +7,7 @@ public class PowerupController : MonoBehaviour
 
     #region parameters
     [SerializeField]
-    private int _escalaPowerup;
+    private int _escalaPowerup = 2;
 
     #endregion
 
@@ -15,23 +15,23 @@ public class PowerupController : MonoBehaviour
     public void powerUpGrande()
     {
         gameObject.transform.localScale *= _escalaPowerup;
+        GameManager._marioState = GameManager.MarioStates.GRANDE;
     }
 
     public void powerDownGrande()
     {
-        gameObject.transform.localScale = Vector2.one;
+        gameObject.transform.localScale /= _escalaPowerup;
+        GameManager._marioState = GameManager.MarioStates.PEQUE;
     }
 
     public void powerUpFuego()
     {
-        //_myDisparaFuego.SetActive(true)
-        return;
+
     }
 
     private void powerDownFire()
     {
         //_myDisparaFuego.SetActive(false);
-        return; //todos los returns son para que no de error, hay que quitarlos cuando se acabe el código.
     }
 
     #endregion

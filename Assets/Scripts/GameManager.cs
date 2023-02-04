@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;   // Instancia privada del singleton
     private GameStates _currentState;       // Estado actual del juego
     private GameStates _nextState;          // Siguiente estado del juego
-    private static MarioStates _marioState; // Estado actual de Mario
+    public static MarioStates _marioState = MarioStates.PEQUE; // Estado actual de Mario
     private float _remainingTime = 60;      // Segundos que dura el nivel
     private float _introTime = 3;           // Segundos que dura la pantalla en negro al cargar el nivel (INTRO state)
     private int _lives = 3;                 // Vidas de Mario

@@ -11,6 +11,11 @@ TagManager:
   - Cabesita
   - BrickBase
   - Powerup
+  - HaserseGrandesito
+  - MysteryBlock
+  - Flag
+  - Seta
+  - Void
   layers:
   - Default
   - TransparentFX
@@ -20,7 +25,7 @@ TagManager:
   - UI
   - Comprobador
   - Player
-  - 
+  - LeftCollider
   - 
   - 
   - 

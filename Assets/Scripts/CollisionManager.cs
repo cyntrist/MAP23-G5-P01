@@ -5,49 +5,64 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     #region parameters
-    public enum PowerupStates { chikito, grandote, fuego }
-    public PowerupStates CurrentPowerState = PowerupStates.chikito;
     #endregion
 
     #region references
     private PowerupController _myPowerupController;
+    private MysteryBlockComponent _myMysteryBlock;
+    private FlagComponent _myFlag;
     #endregion
 
     #region Methods
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Ground") //si no se toca el ground
+
+        if (collision.gameObject.tag == "Seta" && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
+        {         
+            _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)
+            Destroy(collision.gameObject);
+        }
+
+        else if (collision.gameObject.tag == "BrickBase" && GameManager.MarioState >= GameManager.MarioStates.GRANDE) //si tocamos brickbase 
         {
+            Destroy(collision.gameObject.transform.parent.gameObject); //se destruye el brick (padre)
+        }
 
-            if (collision.gameObject.tag == "Powerup") //si tocamos powerup
+        else if (collision.gameObject.tag == "MysteryBlock")
+        {
+            _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
+            _myMysteryBlock.DropPowerUp();
+        }
+
+        else if (collision.gameObject.tag == "Flag")
+        {
+            gameObject.GetComponent<MovementComponent>().enabled = false;
+            _myFlag = collision.gameObject.GetComponent<FlagComponent>();
+            _myFlag.EndOfLevel();
+        }
+
+        else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
+        {
+            if(GameManager.MarioState == GameManager.MarioStates.GRANDE)
             {
-                CurrentPowerState++; //aumentamos estado (mario crece)
-
-                if (CurrentPowerState == PowerupStates.grandote)
-                {
-                    _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)
-                } //despues de crecer estamos en grandote       
-                else if (CurrentPowerState == PowerupStates.fuego)
-                {
-                    _myPowerupController.powerUpFuego(); //obtenemos powerup fuego (flor)
-                } //si estabamos en fuego 
+                _myPowerupController.powerDownGrande();
             }
-
-            else if (collision.gameObject.tag == "BrickBase" && CurrentPowerState >= PowerupStates.grandote) //si tocamos brickbase 
+            else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject); //se destruye el brick (padre)
-            } 
-
-            else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
-            {
-                //mandar al game manager (con (currentstate))
+                Destroy(gameObject);
+                Debug.Log("Tas muerto");
             }
+        }
 
-            else if (collision.gameObject.tag == "Coin") //si tocamos moneda
-            {
-                //mandar al game manager para q cambie el score.
+        else if (collision.gameObject.tag == "Void")
+        {
+            Destroy(gameObject);
+            Debug.Log("Tas muerto");
+        }
 
-            }
+        else if (collision.gameObject.tag == "Coin") //si tocamos moneda
+        {
+            //mandar al game manager para q cambie el score.
         }
     }
     #endregion
@@ -55,8 +70,7 @@ public class CollisionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _myPowerupController = GetComponent<PowerupController>();
-
+        _myPowerupController = gameObject.GetComponent<PowerupController>();
     }
 }
 

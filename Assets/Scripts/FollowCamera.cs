@@ -36,9 +36,12 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (_playerTransform.position.x >= _cameraTransform.position.x && Physics2D.Raycast(_playerTransform.position, _direction, Mathf.Infinity, _myLayerMask))
+        if (_playerTransform != null)
         {
-            _cameraTransform.position = new Vector3(_playerTransform.position.x, -4.55f, 0) + _cameraOffset;
+            if (_playerTransform.position.x >= _cameraTransform.position.x && Physics2D.Raycast(_playerTransform.position, _direction, Mathf.Infinity, _myLayerMask))
+            {
+                _cameraTransform.position = new Vector3(_playerTransform.position.x, _cameraTransform.position.y, 0) + _cameraOffset;
+            }
         }
     }
 }
