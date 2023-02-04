@@ -1,31 +1,29 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum GameStates { START, GAME, GAMEOVER };
-    public enum MarioStates { PEQUE, GRANDE, FUEGO, ESTRELLA} // Esto debería ir en el life component pero lo pongo para aclararme con los metodos 
+    public enum GameStates { START, INTRO, GAME, GAMEOVER };
+    public enum MarioStates { PEQUE, GRANDE, FUEGO, ESTRELLA };
 
     #region references
     private UIManager _UIManager;
-    private LevelManager _levelManager;
-    [SerializeField] GameObject _player;
     [SerializeField] GameObject _level;
     #endregion
 
     #region properties
     private static GameManager _instance;
-    private GameManager.GameStates _currentState;
-    private GameManager.GameStates _nextState;
-    private GameManager.MarioStates _marioState;
+    private GameStates _currentState;
+    private GameStates _nextState;
+    private static MarioStates _marioState;
     private float _remainingTime = 60;
-    private int _lifes = 3;
+    private float _introTime = 3; // Segundos que dura la pantalla en negro al cargar el nivel
+    private int _lives = 3;
     private int _score;
     private int _coins;
     public static GameManager Instance { get { return _instance; } }
     public GameStates CurrentState { get { return _currentState; } }
-    public MarioStates MarioState { get { return _marioState; } }
-    public int Lifes { get { return _lifes; } }
+    public static MarioStates MarioState { get { return _marioState; } }
+    public int Lives { get { return _lives; } }
     public int Score { get { return _score; } }
     public int Coins { get { return _coins; } }
     #endregion
@@ -36,33 +34,28 @@ public class GameManager : MonoBehaviour
     {
         _UIManager = uiManager;
     }
-    public void RegisterLevelManager(LevelManager levelManager)
-    {
-        _levelManager = levelManager;
-    }
 
     // BLOQUE DE JUEGO 
-    public void OneUp() // champiñon verde
+    public void OneUp() // champiñon verde / monedas
     {
-        _lifes++;
+        _lives++;
     }
-
     public void OneDown() // rip 
     {
-        _lifes--;
+        _lives--;
+        _nextState = GameStates.INTRO; // Restart
     }
-    public void AddScore(int points) // Solo add porque creo que nunca resta
+    public void AddScore(int points) // Solo add porque creo que nunca resta?
     {
         _score += points;
     }
-
     public void AddCoins(int coins) // Solo add porque creo que nunca resta
     {
         _coins += coins;
     }
     public void RequestMarioChange(MarioStates state) // Para cambiar directamente a uno
     {
-        _marioState = state; // o _marioState += state?
+        _marioState = state;
     }
     public void AddMarioState() // Para powerups
     {
@@ -81,10 +74,14 @@ public class GameManager : MonoBehaviour
             case GameStates.START:
                 _UIManager.SetMenu(GameStates.START);
                 break;
+            case GameStates.INTRO:
+                _UIManager.SetLives(_lives);
+                _UIManager.SetMenu(GameStates.INTRO);
+                break;
             case GameStates.GAME:
                 LoadLevel();
                 _UIManager.SetMenu(GameStates.GAME);
-                _UIManager.SetUpGameHUD(_remainingTime) ; // Inicializa el HUD
+                _UIManager.SetUpGameHUD(_remainingTime); // Inicializa el HUD
                 break;
             case GameStates.GAMEOVER:
                 UnloadLevel();
@@ -107,21 +104,29 @@ public class GameManager : MonoBehaviour
 
     private void UpdateState(GameStates state)
     {
+        if (_currentState == GameStates.INTRO)
+        {
+            _introTime -= Time.deltaTime;
+            if (_introTime <= 0)
+            {
+                _nextState = GameStates.GAME;
+            }
+        }
+
         if (_currentState == GameStates.GAME) // En el resto de estados no hace falta nada de momento
         {
             _remainingTime -= Time.deltaTime; // Cuenta atrás
 
-            if (_remainingTime < 0 || _lifes <= 0) // Si se acaba el tiempo o las vidas
+            if (_remainingTime < 0 || _lives <= 0) // Si se acaba el tiempo o las vidas
             {
-                //ExitState(_currentState);
                 _nextState = GameStates.GAMEOVER;
             }
 
-            _UIManager.UpdateGameHUD(_score, _coins, _remainingTime); // Actualiza la información del HUD cada frame
+            _UIManager.UpdateGameHUD(_remainingTime); // Actualiza la información del HUD cada frame
         }
     }
 
-    public void RequestStateChange(GameManager.GameStates newState)
+    public void RequestStateChange(GameStates newState)
     {
         _nextState = newState;  // Método público para cambiar el valor privado de estado 
     }
@@ -129,9 +134,6 @@ public class GameManager : MonoBehaviour
     private void LoadLevel()
     {
         Instantiate(_level, Vector3.zero, Quaternion.identity);
-
-        // Setting the player up
-        _levelManager = _level.GetComponent<LevelManager>();
     }
 
     private void UnloadLevel()
@@ -143,13 +145,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this; // Para que éste GameManager sea accesible a través de GameManager.Instance en otros scripts y objetos
-        _marioState = MarioStates.PEQUE;
     }
 
     void Start()
     {
-        _currentState = GameStates.GAMEOVER; // Valor dummy para que se realice el cambio nada más empezar
+        _currentState = GameStates.INTRO; // Valor dummy para que se realice el cambio nada más empezar
         _nextState = GameStates.START; // Estado inicial, es diferente al current para que el EnterState del primer update se realice
+        _marioState = MarioStates.PEQUE; // Inicializandolo para el LifeComp
     }
 
     void Update()
