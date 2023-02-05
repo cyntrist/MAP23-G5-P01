@@ -43,15 +43,8 @@ public class CollisionManager : MonoBehaviour
             _myFlag.EndOfLevel();
         }
 
-        else if (collision.gameObject.transform.GetChild(0).tag == "Cabeza") //si tocamos enemy
-        {
-            Debug.Log("Muere Goomba");
-            Destroy(collision.gameObject);
-        }
-
         else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
         {
-
             if (GameManager.MarioState >= GameManager.MarioStates.GRANDE)
             {
                 Debug.Log(GameManager._marioState);
@@ -59,9 +52,16 @@ public class CollisionManager : MonoBehaviour
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
+                Debug.Log(GameManager._marioState);
                 Destroy(gameObject);
                 Debug.Log("Tas muerto");
             }
+        }
+
+        else if (collision.gameObject.tag == "Cabeza") //si tocamos enemy
+        {
+            Debug.Log("Muere Goomba");
+            Destroy(_goomba);
         }
 
         else if (collision.gameObject.tag == "Void")
