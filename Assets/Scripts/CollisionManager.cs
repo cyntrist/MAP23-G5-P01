@@ -40,7 +40,7 @@ public class CollisionManager : MonoBehaviour
         {
             gameObject.GetComponent<MovementComponent>().enabled = false;
             _myFlag = collision.gameObject.GetComponent<FlagComponent>();
-            _myFlag.EndOfLevel();
+            _myFlag.EndOfLevel(collision.gameObject);
         }
 
         else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
