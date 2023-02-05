@@ -138,11 +138,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b21f9885dc4ac4f418bfa7bdac57d803, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24aeeb9b56beab74599622132abf8af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 590
+  m_JumpForce: 1200
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f8018c01995c641b53414e8bf34439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goomba: {fileID: 0}
+  _goomba: {fileID: 8617244180805923908, guid: ca333f6271b2b40458f2aa7e876365db, type: 3}
 --- !u!61 &6896259849917492060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81fd7b699749be48b11b6779be6a445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _escalaPowerup: 2
+  _escalaPowerup: 1.4
 --- !u!114 &2187026427610447575
 MonoBehaviour:
   m_ObjectHideFlags: 0

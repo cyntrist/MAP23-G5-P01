@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7243323691166743985}
-  - component: {fileID: 462015584571882466}
+  - component: {fileID: 5794894144749001004}
   m_Layer: 0
   m_Name: Cabeza
   m_TagString: Cabeza
@@ -32,8 +32,8 @@ Transform:
   m_Father: {fileID: 1185273650976259743}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &462015584571882466
-BoxCollider2D:
+--- !u!60 &5794894144749001004
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0060842037, y: 0.04313457}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,9 +55,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9269891, y: 0.32964015}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.0037541203, y: 0.21163476}
+      - {x: -0.36541384, y: -0.021345586}
+      - {x: -0.11195189, y: -0.09649986}
+      - {x: 0.14153755, y: -0.0964998}
+      - {x: 0.34664303, y: 0.004933387}
 --- !u!1 &8617244180805923908
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,12 +72,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1185273650976259743}
   - component: {fileID: -8266324071778482333}
-  - component: {fileID: 2810097672192542481}
   - component: {fileID: 3665667780663467107}
   - component: {fileID: -4981851308338609990}
+  - component: {fileID: 8140272585733854312}
   m_Layer: 0
   m_Name: GoombaPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,32 +150,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2810097672192542481
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8617244180805923908}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.7391143}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.24, y: 10.21}
-    newSize: {x: 10.24, y: 10.21}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 10.24, y: 6.7317724}
-  m_EdgeRadius: 0
 --- !u!50 &3665667780663467107
 Rigidbody2D:
   serializedVersion: 4
@@ -192,7 +170,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-4981851308338609990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +185,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cpuSpeed: 1
   _rayDistance: 0.1
+--- !u!61 &8140272585733854312
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617244180805923908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -2.266468}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.21}
+    newSize: {x: 10.24, y: 10.21}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.24, y: 5.677065}
+  m_EdgeRadius: 0

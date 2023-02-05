@@ -7,20 +7,24 @@ public class PowerupController : MonoBehaviour
 
     #region parameters
     [SerializeField]
-    private int _escalaPowerup = 2;
+    private float _escalaPowerup = 1.5f;
 
     #endregion
 
     #region methods
     public void powerUpGrande()
     {
-        gameObject.transform.localScale *= _escalaPowerup;
+        Vector3 theScale = transform.localScale;
+        theScale.y *= _escalaPowerup;
+        transform.localScale = theScale;
         GameManager._marioState = GameManager.MarioStates.GRANDE;
     }
 
     public void powerDownGrande()
     {
-        gameObject.transform.localScale /= _escalaPowerup;
+        Vector3 theScale = transform.localScale;
+        theScale.y /= _escalaPowerup;
+        transform.localScale = theScale;
         GameManager._marioState = GameManager.MarioStates.PEQUE;
     }
 

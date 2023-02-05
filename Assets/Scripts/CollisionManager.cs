@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -42,16 +43,18 @@ public class CollisionManager : MonoBehaviour
             _myFlag.EndOfLevel();
         }
 
-        else if (collision.gameObject.tag == "Enemy" && collision.gameObject.tag != "Cabeza") //si tocamos enemy
+        else if (collision.gameObject.transform.GetChild(0).tag == "Cabeza") //si tocamos enemy
         {
-            Destroy(_goomba);
+            Debug.Log("Muere Goomba");
+            Destroy(collision.gameObject);
         }
 
-        else if (collision.gameObject.tag == "Enemy" && collision.gameObject.tag == "Cabeza") //si tocamos enemy
+        else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
         {
 
-            if (GameManager.MarioState == GameManager.MarioStates.GRANDE)
+            if (GameManager.MarioState >= GameManager.MarioStates.GRANDE)
             {
+                Debug.Log(GameManager._marioState);
                 _myPowerupController.powerDownGrande();
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
