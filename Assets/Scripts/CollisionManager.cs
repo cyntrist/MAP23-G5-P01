@@ -61,7 +61,7 @@ public class CollisionManager : MonoBehaviour
         else if (collision.gameObject.tag == "Cabeza") //si tocamos enemy
         {
             Debug.Log("Muere Goomba");
-            Destroy(_goomba);
+            Destroy(collision.gameObject.transform.parent.gameObject);
         }
 
         else if (collision.gameObject.tag == "Void")
