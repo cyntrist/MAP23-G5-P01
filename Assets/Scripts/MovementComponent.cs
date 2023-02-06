@@ -15,10 +15,9 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalMove = Input.GetAxis("CrucetaX") * runSpeed;
 
-        horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
-
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             jump = true;
         }
@@ -32,11 +31,11 @@ public class MovementComponent : MonoBehaviour
             crouch = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             runSpeed += 1;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.Joystick1Button0))
         {
             runSpeed -= 1;
         }
