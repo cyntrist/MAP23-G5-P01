@@ -55,6 +55,7 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log(GameManager._marioState);
                 Destroy(gameObject);
                 Debug.Log("Tas muerto");
+                GameManager.Instance.OneDown();
             }
         }
 

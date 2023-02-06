@@ -38,17 +38,19 @@ public class UIManager : MonoBehaviour
         _scoreTMP.text = "000000";
         _coinsTMP.text = "x00";
         _remainingTimeTMP.text = "" + (int)time;
-        GameManager.Instance.AddCoins(1); // para ver si funca
-        GameManager.Instance.AddScore(10); // para ver si funca
+        //GameManager.Instance.AddCoins(1); // para ver si funca
+        //GameManager.Instance.AddScore(10); // para ver si funca
     }
 
     public void SetMenu(GameManager.GameStates newMenu)  // Desactiva el menú anterior, actualiza el actual y lo activa
     {
-        _menus[(int)_activeMenu].SetActive(false);
-        Debug.Log("Desactivado: " + _activeMenu.ToString());
+        if (_activeMenu != GameManager.GameStates.GAME && GameManager.Instance.CurrentState != GameManager.GameStates.GAMEOVER) 
+            // El HUD siempre está excepto en GAMEOVER? (optimizable, es un poco chapuza)
+        {
+            _menus[(int)_activeMenu].SetActive(false);
+        }
         _activeMenu = newMenu;
         _menus[(int)_activeMenu].SetActive(true);
-        Debug.Log("Activado: " + _activeMenu.ToString());
     }
 
     public void SetLives(int lives) // Actualiza la cantidad de vidas en el estado INTRO

@@ -11,15 +11,18 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region properties
-    private static GameManager _instance;   // Instancia privada del singleton
-    private GameStates _currentState;       // Estado actual del juego
-    private GameStates _nextState;          // Siguiente estado del juego
+    private const int TIEMPOJUEGO = 3;
+    private const int TIEMPOINTRO = 3;
+    private static GameManager _instance;       // Instancia privada del singleton
+    private GameStates _currentState;           // Estado actual del juego
+    private GameStates _nextState;              // Siguiente estado del juego
     public static MarioStates _marioState = MarioStates.PEQUE; // Estado actual de Mario
-    private float _remainingTime = 60;      // Segundos que dura el nivel
-    private float _introTime = 3;           // Segundos que dura la pantalla en negro al cargar el nivel (INTRO state)
-    private int _lives = 3;                 // Vidas de Mario
-    private int _score;                     // Puntuación total en el nivel
-    private int _coins;                     // Monedas totales en el nivel
+    private float _remainingTime = TIEMPOJUEGO; // Segundos que dura el nivel
+    private float _introTime = TIEMPOINTRO;     // Segundos que dura la pantalla en negro al cargar el nivel (INTRO state)
+    private int _lives = 3;                     // Vidas de Mario
+    private int _score;                         // Puntuación total en el nivel
+    private int _coins;                         // Monedas totales en el nivel
+    private GameObject _levelInstance;
     public static GameManager Instance { get { return _instance; } } // MÉTODOS GETTER
     public GameStates CurrentState { get { return _currentState; } }
     public static MarioStates MarioState { get { return _marioState; } }
@@ -43,7 +46,14 @@ public class GameManager : MonoBehaviour
     public void OneDown() // rip 
     {
         _lives--;
-        _nextState = GameStates.INTRO; // Restart
+        if (_lives > 0 ) 
+        {
+            _nextState = GameStates.INTRO; // Restart
+        }
+        else
+        {
+            _nextState = GameStates.GAMEOVER;
+        }
     }
     public void AddScore(int points) // Solo add porque creo que nunca resta?
     {
@@ -75,10 +85,16 @@ public class GameManager : MonoBehaviour
                 _UIManager.SetMenu(GameStates.START);    // Activa menú inicial
                 break;
             case GameStates.INTRO:                       //     *INTRO* (Pantalla en negro con las vidas antes de cargar el lvl)
+                _introTime = TIEMPOINTRO;
+                if (_levelInstance != null)
+                {
+                    UnloadLevel();
+                }
                 _UIManager.SetLives(_lives);             // Inicializa valores de vida en la UI
                 _UIManager.SetMenu(GameStates.INTRO);    // Activa menú intro
                 break;
             case GameStates.GAME:                        //     *JUEGO*
+                _remainingTime = TIEMPOJUEGO;
                 LoadLevel();                             // Instancia el nivel
                 _UIManager.SetUpGameHUD(_remainingTime); // Inicializa valores del HUD
                 _UIManager.SetMenu(GameStates.GAME);     // Activa HUD
@@ -108,7 +124,7 @@ public class GameManager : MonoBehaviour
             _remainingTime -= Time.deltaTime; // Cuenta atrás
             if (_remainingTime < 0 || _lives <= 0) // Si se acaba el tiempo o las vidas
             {
-                _nextState = GameStates.GAMEOVER;
+                OneDown();
             }
 
             _UIManager.UpdateGameHUD(_remainingTime); // Actualiza la información del HUD cada frame
@@ -122,12 +138,12 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel() // Instancia el lvl y ya
     {
-        Instantiate(_level, Vector3.zero, Quaternion.identity);
+        _levelInstance = Instantiate(_level, Vector3.zero, Quaternion.identity);
     }
 
     private void UnloadLevel() // Lo destruye y ya
     {
-        DestroyImmediate(_level, true);
+        Destroy(_levelInstance);
     }
 
     #endregion
