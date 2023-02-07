@@ -18,7 +18,6 @@ public class CollisionManager : MonoBehaviour
     #region Methods
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.tag == "Seta" && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
         {
             _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)

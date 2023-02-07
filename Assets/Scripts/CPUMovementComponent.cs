@@ -10,7 +10,7 @@ public class CPUMovementComponent : MonoBehaviour
     private float _cpuSpeed = 1.0f;
     [SerializeField]
     private float _rayDistance = 0.1f;
-    private bool _derecha = false;
+    public bool _derecha = false;
     private RaycastHit2D _myRaycastHit;
     private LayerMask _myLayerMask;
     // Start is called before the first frame update
