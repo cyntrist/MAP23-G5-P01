@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region properties
-    private const int TIEMPOJUEGO = 3;
+    private const int TIEMPOJUEGO = 300;
     private const int TIEMPOINTRO = 3;
     private static GameManager _instance;       // Instancia privada del singleton
     private GameStates _currentState;           // Estado actual del juego
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private int _lives = 3;                     // Vidas de Mario
     private int _score;                         // Puntuación total en el nivel
     private int _coins;                         // Monedas totales en el nivel
-    private GameObject _levelInstance;
+    private GameObject _levelInstance;          // Instancia del nivel (solo es para el Unload() porque si no me daba error :P)
     public static GameManager Instance { get { return _instance; } } // MÉTODOS GETTER
     public GameStates CurrentState { get { return _currentState; } }
     public static MarioStates MarioState { get { return _marioState; } }
@@ -85,16 +85,16 @@ public class GameManager : MonoBehaviour
                 _UIManager.SetMenu(GameStates.START);    // Activa menú inicial
                 break;
             case GameStates.INTRO:                       //     *INTRO* (Pantalla en negro con las vidas antes de cargar el lvl)
-                _introTime = TIEMPOINTRO;
+                _introTime = TIEMPOINTRO;                // Reinicia el timer
                 if (_levelInstance != null)
                 {
-                    UnloadLevel();
+                    UnloadLevel();                       // Si el nivel existe lo destruye
                 }
                 _UIManager.SetLives(_lives);             // Inicializa valores de vida en la UI
                 _UIManager.SetMenu(GameStates.INTRO);    // Activa menú intro
                 break;
             case GameStates.GAME:                        //     *JUEGO*
-                _remainingTime = TIEMPOJUEGO;
+                _remainingTime = TIEMPOJUEGO;            // Reinicia el tiempo
                 LoadLevel();                             // Instancia el nivel
                 _UIManager.SetUpGameHUD(_remainingTime); // Inicializa valores del HUD
                 _UIManager.SetMenu(GameStates.GAME);     // Activa HUD

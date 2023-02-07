@@ -51,10 +51,10 @@ public class CollisionManager : MonoBehaviour
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
+                GameManager.Instance.OneDown();
                 Debug.Log(GameManager._marioState);
                 Destroy(gameObject);
                 Debug.Log("Tas muerto");
-                GameManager.Instance.OneDown();
             }
         }
 
@@ -68,11 +68,13 @@ public class CollisionManager : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Tas muerto");
+            GameManager.Instance.OneDown();
         }
 
         else if (collision.gameObject.tag == "Coin") //si tocamos moneda
         {
-            //mandar al game manager para q cambie el score.
+            GameManager.Instance.AddCoins(1);
+            // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
         }
     }
     #endregion
