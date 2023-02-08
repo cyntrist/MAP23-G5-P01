@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4529039277746335545}
-  - component: {fileID: 3927639607114683934}
+  - component: {fileID: 3955748139246709134}
   m_Layer: 0
   m_Name: Cabeza
   m_TagString: Cabeza
@@ -90,8 +90,8 @@ Transform:
   m_Father: {fileID: 1185273650976259743}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3927639607114683934
-BoxCollider2D:
+--- !u!60 &3955748139246709134
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,9 +113,25 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.21609773, y: -1.2671545}
+      - {x: 0.21145128, y: -0.6634295}
+      - {x: 0.14985967, y: -0.61407566}
+      - {x: 0.15074472, y: 0.02846241}
+      - {x: -0.13506807, y: 0.052137375}
+      - {x: -0.12513307, y: -0.47011614}
+      - {x: -0.20066574, y: -0.49634218}
+      - {x: -0.20029649, y: -1.0918474}
+      - {x: -0.2783937, y: -1.1124837}
+      - {x: -0.28125522, y: -1.7729652}
+      - {x: -0.3520236, y: -1.7699621}
+      - {x: -0.3542723, y: -2.392298}
+      - {x: -0.24958868, y: -2.3891897}
+      - {x: 0.3560201, y: -2.4279559}
+      - {x: 0.35364017, y: -1.9414079}
+      - {x: 0.29242858, y: -1.9555528}
+      - {x: 0.29366022, y: -1.2277491}
 --- !u!1 &8617244180805923908
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cpuSpeed: 1
   _rayDistance: 0.1
+  _derecha: 0
 --- !u!61 &3207773805497579106
 BoxCollider2D:
   m_ObjectHideFlags: 0
