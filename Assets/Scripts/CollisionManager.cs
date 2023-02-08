@@ -36,8 +36,9 @@ public class CollisionManager : MonoBehaviour
             _myMysteryBlock.DropPowerUp();
         }
         else if (collision.gameObject.tag == "InvisibleBlock")
-        {
-            //activara mystery block que dropeara 1up
+        { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
+            Debug.Log("Colisión con invisible block");
+            //Instantiate(MysteryBlock,transform.parent, Quaternion.identity); 
             //setactive?
             //droppowerup()?
         }
