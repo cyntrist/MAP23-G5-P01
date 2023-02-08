@@ -38,7 +38,9 @@ public class CollisionManager : MonoBehaviour
         else if (collision.gameObject.tag == "InvisibleBlock")
         { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
             Debug.Log("Colisión con invisible block");
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true; //no funciona
             //Instantiate(MysteryBlock,transform.parent, Quaternion.identity); 
+
             //setactive?
             //droppowerup()?
         }
