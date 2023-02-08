@@ -43,7 +43,7 @@ public class MovementComponent : MonoBehaviour
         // Animator (Lo he tenido que meter aquí porque desde el GameManager no podía, mis disculpas, no hay conflictos que haya visto -Cynthia)
         if (animator!= null)
         {
-            if (horizontalMove != 0)
+            if (horizontalMove != 0 && controller.m_Grounded)
             {
                 animator.SetTrigger("caminando");
             }
@@ -52,7 +52,7 @@ public class MovementComponent : MonoBehaviour
                 animator.ResetTrigger("caminando");
             }
 
-            if (jump)
+            if (!controller.m_Grounded)
             {
                 animator.SetTrigger("saltando");
             }

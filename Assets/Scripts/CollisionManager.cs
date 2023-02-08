@@ -12,6 +12,7 @@ public class CollisionManager : MonoBehaviour
     private PowerupController _myPowerupController;
     private MysteryBlockComponent _myMysteryBlock;
     private FlagComponent _myFlag;
+    private Animator _myAnimator;
     [SerializeField] private GameObject _goomba;
     #endregion
 
@@ -96,6 +97,7 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
         _myPowerupController = gameObject.GetComponent<PowerupController>();
+        _myAnimator = gameObject.GetComponent<Animator>();
     }
 }
 
