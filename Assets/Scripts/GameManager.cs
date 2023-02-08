@@ -145,10 +145,7 @@ public class GameManager : MonoBehaviour
                 if ((int)_remainingTime == tiempo_inmortal - 3.0)
                 {
                     i_frames = false;
-                    Debug.Log(tiempo_inmortal);
                 }
-                else
-                    Debug.Log(tiempo_inmortal);
             }
 
             _UIManager.UpdateGameHUD(_remainingTime); // Actualiza la información del HUD cada frame
