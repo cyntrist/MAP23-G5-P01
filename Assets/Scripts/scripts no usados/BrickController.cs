@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BrickController : MonoBehaviour
@@ -15,7 +14,8 @@ public class BrickController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")){
+        if (collision.gameObject.CompareTag("Player"))
+        {
             Debug.Log("Colisiona con player");
             if (canBounce)
             {
@@ -29,7 +29,7 @@ public class BrickController : MonoBehaviour
         while (true)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + bounceSpeed * Time.deltaTime);
-            if(transform.localPosition.y >= originalPosition.y + bounceHeight)
+            if (transform.localPosition.y >= originalPosition.y + bounceHeight)
             {
                 break;
             }
@@ -38,7 +38,7 @@ public class BrickController : MonoBehaviour
         while (true)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + bounceSpeed * Time.deltaTime);
-            if(transform.localPosition.y >= originalPosition.y)
+            if (transform.localPosition.y >= originalPosition.y)
             {
                 transform.localPosition = originalPosition;
                 break;

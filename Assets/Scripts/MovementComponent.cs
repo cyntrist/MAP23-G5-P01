@@ -41,7 +41,7 @@ public class MovementComponent : MonoBehaviour
         }
 
         // Animator (Lo he tenido que meter aquí porque desde el GameManager no podía, mis disculpas, no hay conflictos que haya visto -Cynthia)
-        if (animator!= null)
+        if (animator != null)
         {
             if (horizontalMove != 0 && controller.m_Grounded)
             {

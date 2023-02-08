@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static GameManager;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -20,23 +17,23 @@ public class CollisionManager : MonoBehaviour
     #region Methods
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Seta" && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
+        if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
         {
             _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)
             Destroy(collision.gameObject);
         }
 
-        else if (collision.gameObject.tag == "BrickBase" && GameManager.MarioState >= GameManager.MarioStates.GRANDE) //si tocamos brickbase 
+        else if (collision.gameObject.CompareTag("BrickBase") && GameManager.MarioState >= GameManager.MarioStates.GRANDE) //si tocamos brickbase 
         {
             Destroy(collision.gameObject.transform.parent.gameObject); //se destruye el brick (padre)
         }
 
-        else if (collision.gameObject.tag == "MysteryBlock")
+        else if (collision.gameObject.CompareTag("MysteryBlock"))
         {
             _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
             _myMysteryBlock.DropPowerUp();
         }
-        else if (collision.gameObject.tag == "InvisibleBlock")
+        else if (collision.gameObject.CompareTag("InvisibleBlock"))
         { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
             Debug.Log("Colisión con invisible block");
             //Instantiate(MysteryBlock,transform.parent, Quaternion.identity); 
@@ -44,14 +41,14 @@ public class CollisionManager : MonoBehaviour
             //droppowerup()?
         }
 
-        else if (collision.gameObject.tag == "Flag")
+        else if (collision.gameObject.CompareTag("Flag"))
         {
             gameObject.GetComponent<MovementComponent>().enabled = false;
             _myFlag = collision.gameObject.GetComponent<FlagComponent>();
             _myFlag.EndOfLevel(collision.gameObject);
         }
 
-        else if (collision.gameObject.tag == "Enemy" && !GameManager.Instance.i_frames) //si tocamos enemy
+        else if (collision.gameObject.CompareTag("Enemy") && !GameManager.Instance.i_frames) //si tocamos enemy
         {
             if (GameManager.MarioState >= GameManager.MarioStates.GRANDE)
             {
@@ -64,24 +61,24 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log(GameManager._marioState);
                 Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
                 _muerto = true;
-                // He muerto el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
+                // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
             }
         }
 
-        else if (collision.gameObject.tag == "Cabeza") //si tocamos enemy
+        else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
         {
             Debug.Log("Muere Goomba");
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
 
-        else if (collision.gameObject.tag == "Void")
+        else if (collision.gameObject.CompareTag("Void"))
         {
             Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
             _muerto = true;
-            // He muerto el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
+            // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
         }
 
-        else if (collision.gameObject.tag == "Coin") //si tocamos moneda
+        else if (collision.gameObject.CompareTag("Coin")) //si tocamos moneda
         {
             GameManager.Instance.AddCoins(1);
             // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
@@ -92,7 +89,7 @@ public class CollisionManager : MonoBehaviour
     // referenciamos este script en el game manager
     private void Awake()
     {
-            GameManager.Instance.RegisterCollisionManager(this);
+        GameManager.Instance.RegisterCollisionManager(this);
     }
 
     // Start is called before the first frame update
@@ -108,7 +105,7 @@ public class CollisionManager : MonoBehaviour
         {
             Debug.Log("Muerto");
             GameManager.Instance.OneDown();
-            Destroy(gameObject);
+            Destroy(gameObject);            // lo ultimisimo porque se destruye este script con él
         }
         _muerto = false;
     }

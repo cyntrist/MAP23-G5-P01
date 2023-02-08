@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyBrick : MonoBehaviour //Hay que dar este component a la base del brick (BRICK BASE), child de Brick

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     public void OneDown() // rip 
     {
         _lives--;
-        if (_lives > 0 ) 
+        if (_lives > 0)
         {
             _nextState = GameStates.INTRO; // Restart
         }
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     public void RequestStateChange(GameStates newState) // Método público para cambiar el valor privado de estado 
     {
-        _nextState = newState;  
+        _nextState = newState;
     }
 
     private void LoadLevel() // Instancia el lvl y ya

@@ -44,8 +44,8 @@ public class UIManager : MonoBehaviour
 
     public void SetMenu(GameManager.GameStates newMenu)  // Desactiva el menú anterior, actualiza el actual y lo activa
     {
-        if (_activeMenu != GameManager.GameStates.GAME && GameManager.Instance.CurrentState != GameManager.GameStates.GAMEOVER) 
-            // El HUD siempre está excepto en GAMEOVER? (optimizable, es un poco chapuza)
+        if (_activeMenu != GameManager.GameStates.GAME && GameManager.Instance.CurrentState != GameManager.GameStates.GAMEOVER)
+        // El HUD siempre está excepto en GAMEOVER? (optimizable, es un poco chapuza)
         {
             _menus[(int)_activeMenu].SetActive(false);
         }
