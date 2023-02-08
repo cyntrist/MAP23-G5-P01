@@ -48,12 +48,13 @@ public class CollisionManager : MonoBehaviour
             _myFlag.EndOfLevel(collision.gameObject);
         }
 
-        else if (collision.gameObject.tag == "Enemy") //si tocamos enemy
+        else if (collision.gameObject.tag == "Enemy" && !GameManager.Instance.i_frames) //si tocamos enemy
         {
             if (GameManager.MarioState >= GameManager.MarioStates.GRANDE)
             {
                 Debug.Log(GameManager._marioState);
                 _myPowerupController.powerDownGrande();
+                GameManager.Instance.i_frames = true;
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
@@ -84,6 +85,12 @@ public class CollisionManager : MonoBehaviour
         }
     }
     #endregion
+
+    // referenciamos este script en el game manager
+    private void Awake()
+    {
+            GameManager.Instance.RegisterCollisionManager(this);
+    }
 
     // Start is called before the first frame update
     void Start()

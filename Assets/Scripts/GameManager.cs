@@ -8,15 +8,18 @@ public class GameManager : MonoBehaviour
     #region references
     private UIManager _UIManager;           // Referencia al UIManager
     [SerializeField] GameObject _level;     // Referencia al prefab del nivel 1-1
+    private CollisionManager _collisionManager; //referencia al collision manager
     #endregion
 
     #region properties
+    public bool i_frames = false;
+    private int tiempo_inmortal;
     private const int TIEMPOJUEGO = 300;
     private const int TIEMPOINTRO = 3;
     private static GameManager _instance;       // Instancia privada del singleton
     private GameStates _currentState;           // Estado actual del juego
     private GameStates _nextState;              // Siguiente estado del juego
-    public static MarioStates _marioState = MarioStates.PEQUE; // Estado actual de Mario
+    public static MarioStates _marioState; // Estado actual de Mario
     private float _remainingTime = TIEMPOJUEGO; // Segundos que dura el nivel
     private float _introTime = TIEMPOINTRO;     // Segundos que dura la pantalla en negro al cargar el nivel (INTRO state)
     private int _lives = 3;                     // Vidas de Mario
@@ -36,6 +39,12 @@ public class GameManager : MonoBehaviour
     public void RegisterUIManager(UIManager uiManager)
     {
         _UIManager = uiManager;
+    }
+
+    // referencia al colision
+    public void RegisterCollisionManager(CollisionManager collisionManager)
+    {
+        _collisionManager = collisionManager;
     }
 
     // BLOQUE DE JUEGO 
@@ -125,6 +134,21 @@ public class GameManager : MonoBehaviour
             if (_remainingTime < 0 || _lives <= 0) // Si se acaba el tiempo o las vidas
             {
                 OneDown();
+            }
+
+            if (!i_frames)
+            {
+                tiempo_inmortal = (int)_remainingTime;
+            }
+            else
+            {
+                if ((int)_remainingTime == tiempo_inmortal - 3.0)
+                {
+                    i_frames = false;
+                    Debug.Log(tiempo_inmortal);
+                }
+                else
+                    Debug.Log(tiempo_inmortal);
             }
 
             _UIManager.UpdateGameHUD(_remainingTime); // Actualiza la información del HUD cada frame
