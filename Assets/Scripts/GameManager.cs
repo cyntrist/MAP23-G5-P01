@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;       // Instancia privada del singleton
     private GameStates _currentState;           // Estado actual del juego
     private GameStates _nextState;              // Siguiente estado del juego
-    public static MarioStates _marioState; // Estado actual de Mario
+    public static MarioStates _marioState;      // Estado actual de Mario
     private float _remainingTime = TIEMPOJUEGO; // Segundos que dura el nivel
     private float _introTime = TIEMPOINTRO;     // Segundos que dura la pantalla en negro al cargar el nivel (INTRO state)
     private int _lives = 3;                     // Vidas de Mario
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         if (state == GameStates.GAME) // GAME: cuenta atrás o vidas a 0 + actualizar HUD cada frame
         {
             _remainingTime -= Time.deltaTime; // Cuenta atrás
-            if (_remainingTime < 0 || _lives <= 0) // Si se acaba el tiempo o las vidas
+            if (_remainingTime < 0) // Si se acaba el tiempo o las vidas
             {
                 OneDown();
             }
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
     {
         _currentState = GameStates.INTRO; // Valor dummy para que se realice el cambio nada más empezar
         _nextState = GameStates.START;    // Estado inicial, es diferente al current para que el EnterState del primer update se realice
-        _marioState = MarioStates.PEQUE;  // Inicializandolo para el LifeComp
+        _marioState = MarioStates.PEQUE;  // Inicializandolo 
     }
 
     void Update()

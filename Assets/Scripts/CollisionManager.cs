@@ -13,6 +13,7 @@ public class CollisionManager : MonoBehaviour
     private MysteryBlockComponent _myMysteryBlock;
     private FlagComponent _myFlag;
     private Animator _myAnimator;
+    private bool _muerto = false;
     [SerializeField] private GameObject _goomba;
     #endregion
 
@@ -38,9 +39,7 @@ public class CollisionManager : MonoBehaviour
         else if (collision.gameObject.tag == "InvisibleBlock")
         { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
             Debug.Log("Colisión con invisible block");
-            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true; //no funciona
             //Instantiate(MysteryBlock,transform.parent, Quaternion.identity); 
-
             //setactive?
             //droppowerup()?
         }
@@ -62,10 +61,10 @@ public class CollisionManager : MonoBehaviour
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
-                GameManager.Instance.OneDown();
                 Debug.Log(GameManager._marioState);
-                Destroy(gameObject);
-                Debug.Log("Tas muerto");
+                Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
+                _muerto = true;
+                // He muerto el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
             }
         }
 
@@ -77,9 +76,9 @@ public class CollisionManager : MonoBehaviour
 
         else if (collision.gameObject.tag == "Void")
         {
-            Destroy(gameObject);
-            Debug.Log("Tas muerto");
-            GameManager.Instance.OneDown();
+            Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
+            _muerto = true;
+            // He muerto el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
         }
 
         else if (collision.gameObject.tag == "Coin") //si tocamos moneda
@@ -101,6 +100,17 @@ public class CollisionManager : MonoBehaviour
     {
         _myPowerupController = gameObject.GetComponent<PowerupController>();
         _myAnimator = gameObject.GetComponent<Animator>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_muerto)
+        {
+            Debug.Log("Muerto");
+            GameManager.Instance.OneDown();
+            Destroy(gameObject);
+        }
+        _muerto = false;
     }
 }
 
