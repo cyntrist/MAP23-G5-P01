@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             _nextState = GameStates.GAMEOVER;
         }
     }
-    public void AddScore(int points) // Solo add porque creo que nunca resta?
+    public void AddScore(int points) // Solo add porque nunca se restan
     {
         _score += points;
     }

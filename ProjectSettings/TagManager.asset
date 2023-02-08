@@ -17,6 +17,7 @@ TagManager:
   - Seta
   - Void
   - Cabeza
+  - InvisibleBlock
   layers:
   - Default
   - TransparentFX

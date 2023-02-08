@@ -34,6 +34,12 @@ public class CollisionManager : MonoBehaviour
             _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
             _myMysteryBlock.DropPowerUp();
         }
+        else if (collision.gameObject.tag == "InvisibleBlock")
+        {
+            //activara mystery block que dropeara 1up
+            //setactive?
+            //droppowerup()?
+        }
 
         else if (collision.gameObject.tag == "Flag")
         {
