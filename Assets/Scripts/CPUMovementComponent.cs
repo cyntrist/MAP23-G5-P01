@@ -21,7 +21,7 @@ public class CPUMovementComponent : MonoBehaviour
         if (_derecha == true) _cpuTransform.Translate(Vector2.right * _cpuSpeed * Time.deltaTime);
         else _cpuTransform.Translate(Vector2.left * _cpuSpeed * Time.deltaTime);
     }
-    void OnCollisionEnter2D(Collision collision) { 
+    void OnCollisionEnter2D(Collision2D collision) { 
         _derecha = !_derecha;
     }
 }

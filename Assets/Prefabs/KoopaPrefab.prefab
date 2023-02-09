@@ -68,9 +68,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8167628246686271094}
   - component: {fileID: 2984194874954930890}
-  - component: {fileID: 4810416265567023543}
   - component: {fileID: -5865512039462649832}
-  - component: {fileID: 7444028575629557066}
+  - component: {fileID: 4499062864039724292}
   m_Layer: 0
   m_Name: KoopaPrefab
   m_TagString: Untagged
@@ -147,32 +146,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4810416265567023543
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7952539484752954668}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0009798706, y: -0.06301139}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.24}
-    newSize: {x: 0.16, y: 0.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.160799, y: 0.1089301}
-  m_EdgeRadius: 0
 --- !u!114 &-5865512039462649832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cpuSpeed: 1
   _derecha: 0
---- !u!114 &7444028575629557066
+--- !u!114 &4499062864039724292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcfefab409d61b43b6f7a87c0b83054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shellPrefab: {fileID: 7824416312281481225, guid: 8c1549807c1d3234ea47e5f53a84ca54, type: 3}
+  _shellPrefab: {fileID: 389865949757549509, guid: 8c1549807c1d3234ea47e5f53a84ca54, type: 3}
 --- !u!1 &9197839175263347711
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +214,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 9197839175263347711}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8e87d9634a180f64abe7599bb5f33735, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

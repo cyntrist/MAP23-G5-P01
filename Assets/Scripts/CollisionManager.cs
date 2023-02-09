@@ -11,11 +11,12 @@ public class CollisionManager : MonoBehaviour
     private FlagComponent _myFlag;
     private Animator _myAnimator;
     private bool _muerto = false;
+    private KoopaBehaviour _koopaBehaviour;
     [SerializeField] private GameObject _goomba;
     #endregion
 
     #region Methods
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
         {
@@ -35,10 +36,8 @@ public class CollisionManager : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("InvisibleBlock"))
         { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
-            Debug.Log("Colisión con invisible block");
-            //Instantiate(MysteryBlock,transform.parent, Quaternion.identity); 
-            //setactive?
-            //droppowerup()?
+            collision.gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            collision.gameObject.transform.parent.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         }
 
         else if (collision.gameObject.CompareTag("Flag"))
@@ -48,7 +47,36 @@ public class CollisionManager : MonoBehaviour
             _myFlag.EndOfLevel(collision.gameObject);
         }
 
-        else if (collision.gameObject.CompareTag("Enemy") && !GameManager.Instance.i_frames) //si tocamos enemy
+        else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
+        {
+            if (collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>() != null)
+            {
+                _koopaBehaviour = collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>();
+                _koopaBehaviour.ShellDrop();
+            }
+            else
+            {
+                Destroy(collision.gameObject.transform.parent.gameObject);
+            }
+        }
+
+        else if (collision.gameObject.CompareTag("Void"))
+        {
+            Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
+            _muerto = true;
+            // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
+        }
+
+        else if (collision.gameObject.CompareTag("Coin")) //si tocamos moneda
+        {
+            GameManager.Instance.AddCoins(1);
+            // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !GameManager.Instance.i_frames) //si tocamos enemy
         {
             if (GameManager.MarioState >= GameManager.MarioStates.GRANDE)
             {
@@ -64,24 +92,21 @@ public class CollisionManager : MonoBehaviour
                 // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
             }
         }
+    }
 
-        else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("InvisibleTrigger"))
         {
-            Debug.Log("Muere Goomba");
-            Destroy(collision.gameObject.transform.parent.gameObject);
+            other.gameObject.transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
+    }
 
-        else if (collision.gameObject.CompareTag("Void"))
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("InvisibleTrigger"))
         {
-            Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
-            _muerto = true;
-            // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
-        }
-
-        else if (collision.gameObject.CompareTag("Coin")) //si tocamos moneda
-        {
-            GameManager.Instance.AddCoins(1);
-            // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
+            other.gameObject.transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
     #endregion

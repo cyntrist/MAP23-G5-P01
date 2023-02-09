@@ -99,7 +99,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 6158176786326196509}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8e87d9634a180f64abe7599bb5f33735, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cpuSpeed: 1
-  _rayDistance: 0.1
   _derecha: 0
 --- !u!61 &3207773805497579106
 BoxCollider2D:

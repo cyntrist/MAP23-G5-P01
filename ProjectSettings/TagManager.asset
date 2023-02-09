@@ -18,6 +18,8 @@ TagManager:
   - Void
   - Cabeza
   - InvisibleBlock
+  - InvisibleTrigger
+  - Koopa
   layers:
   - Default
   - TransparentFX
