@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 7725780727854249769}
   m_Layer: 0
   m_Name: Cabeza
-  m_TagString: Cabesita
+  m_TagString: Cabeza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.037236687, y: 0.12590322}
+    - - {x: -0.028963836, y: 0.11988659}
+      - {x: -0.039396215, y: 0.119868435}
       - {x: -0.053374663, y: 0.11302405}
       - {x: -0.073318794, y: 0.085791945}
       - {x: -0.08189365, y: 0.05059533}
@@ -240,4 +241,4 @@ PolygonCollider2D:
       - {x: 0.060996663, y: 0.017529843}
       - {x: -0.005894158, y: 0.028577928}
       - {x: -0.0051613003, y: 0.0569218}
-      - {x: -0.0031336583, y: 0.08792125}
+      - {x: -0.008398199, y: 0.08867333}

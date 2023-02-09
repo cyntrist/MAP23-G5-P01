@@ -4,6 +4,8 @@ public class FlagComponent : MonoBehaviour
 {
     [SerializeField] GameObject _entireFlag;
     [SerializeField] float _flagSpeed;
+    [SerializeField] Transform _castleTransform;
+
     public void EndOfLevel(GameObject entireFlag)
     {
         _entireFlag = entireFlag;

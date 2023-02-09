@@ -8,11 +8,11 @@ public class CollisionManager : MonoBehaviour
     #region references
     private PowerupController _myPowerupController;
     private MysteryBlockComponent _myMysteryBlock;
-    private FlagComponent _myFlag;
+    private GameObject _myFlag;
     private Animator _myAnimator;
     private bool _muerto = false;
     private KoopaBehaviour _koopaBehaviour;
-    [SerializeField] private GameObject _goomba;
+    private MovementComponent _myMovementComponent;
     #endregion
 
     #region Methods
@@ -43,14 +43,17 @@ public class CollisionManager : MonoBehaviour
         else if (collision.gameObject.CompareTag("Flag"))
         {
             gameObject.GetComponent<MovementComponent>().enabled = false;
-            _myFlag = collision.gameObject.GetComponent<FlagComponent>();
-            _myFlag.EndOfLevel(collision.gameObject);
+            _myFlag = collision.gameObject;
+            _myFlag.GetComponent<FlagComponent>().EndOfLevel(collision.gameObject);
+            _myFlag.GetComponent<BoxCollider2D>().enabled = false;
+            _myMovementComponent.GoToCastle();
         }
 
         else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
         {
             if (collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>() != null)
             {
+                Debug.Log("CAGON");
                 _koopaBehaviour = collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>();
                 _koopaBehaviour.ShellDrop();
             }
@@ -122,6 +125,7 @@ public class CollisionManager : MonoBehaviour
     {
         _myPowerupController = gameObject.GetComponent<PowerupController>();
         _myAnimator = gameObject.GetComponent<Animator>();
+        _myMovementComponent = gameObject.GetComponent<MovementComponent>();
     }
 
     private void FixedUpdate()
