@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public void OneUp() // champiñon verde / 100 monedas
     {
         _lives++;
+        Debug.Log("Vida++");
     }
     public void OneDown() // rip 
     {
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this; // Para que éste GameManager sea accesible a través de GameManager.Instance en otros scripts y objetos
+        _instance = this; // Para que este GameManager sea accesible a través de GameManager.Instance en otros scripts y objetos
     }
 
     void Start()

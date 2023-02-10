@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cpuSpeed: 1
-  _rayDistance: 0.1
+  _derecha: 0
 --- !u!50 &6331308002568463553
 Rigidbody2D:
   serializedVersion: 4

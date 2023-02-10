@@ -20,6 +20,10 @@ TagManager:
   - InvisibleBlock
   - InvisibleTrigger
   - Koopa
+  - Coin
+  - 1UP
+  - FireFlower
+  - Star
   layers:
   - Default
   - TransparentFX

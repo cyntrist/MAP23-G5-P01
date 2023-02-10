@@ -18,12 +18,21 @@ public class CollisionManager : MonoBehaviour
     #region Methods
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos powerup
+        if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos Seta y somos chikitos
         {
-            _myPowerupController.powerUpGrande(); //obtenemos powerup grande (seta)
+            //_myPowerupController.powerUpGrande(); // No funciona
             Destroy(collision.gameObject);
         }
-
+        else if (collision.gameObject.CompareTag("1UP")) //si tocamos 1UP
+        {
+            //GameManager.Instance.OneUp(); //No funciona creo q por las referencias mal
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("FireFlower") && GameManager.MarioState == GameManager.MarioStates.GRANDE) //si tocamos flor y somos grandes
+        {
+            //_myPowerupController.powerUpFuego(); // No funciona
+            Destroy(collision.gameObject);
+        }
         else if (collision.gameObject.CompareTag("BrickBase") && GameManager.MarioState >= GameManager.MarioStates.GRANDE) //si tocamos brickbase 
         {
             Destroy(collision.gameObject.transform.parent.gameObject); //se destruye el brick (padre)
@@ -35,8 +44,8 @@ public class CollisionManager : MonoBehaviour
             _myMysteryBlock.DropPowerUp();
         }
         else if (collision.gameObject.CompareTag("InvisibleBlock"))
-        { //Cuando se detecte colision con el InvisibleBlock, instanciar o activar (?) EmptyBlock que dropee de seguido el 1UP
-            collision.gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        { 
+            collision.gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = true; //enables el Renderer al colisionar
             collision.gameObject.transform.parent.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         }
 
@@ -53,7 +62,7 @@ public class CollisionManager : MonoBehaviour
         {
             if (collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>() != null)
             {
-                Debug.Log("CAGON");
+                Debug.Log("CAGON"); // a veces crea 2 shells
                 _koopaBehaviour = collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>();
                 _koopaBehaviour.ShellDrop();
             }
@@ -72,8 +81,9 @@ public class CollisionManager : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Coin")) //si tocamos moneda
         {
-            GameManager.Instance.AddCoins(1);
+            //GameManager.Instance.AddCoins(1); //No funciona por las referencias creo
             // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
+            Destroy(collision.gameObject);
         }
     }
 
@@ -117,7 +127,7 @@ public class CollisionManager : MonoBehaviour
     // referenciamos este script en el game manager
     private void Awake()
     {
-        GameManager.Instance.RegisterCollisionManager(this);
+        GameManager.Instance.RegisterCollisionManager(this); // Da error al ejecutar
     }
 
     // Start is called before the first frame update
