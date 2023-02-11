@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -2777,9 +2777,9 @@ TextureImporter:
       Enemigos Mario_44: -1279392228
       Enemigos Mario_38: 1612955422
       Enemigos Mario_54: 460972855
+      Enemigos Mario_114: -286236028
       Enemigos Mario_27: -1024142901
       Enemigos Mario_106: -616493300
-      Enemigos Mario_114: -286236028
       Enemigos Mario_100: -378392485
       Enemigos Mario_123: -1045386308
       Enemigos Mario_58: -1589175870
@@ -2821,8 +2821,8 @@ TextureImporter:
       Enemigos Mario_96: 46176588
       Enemigos Mario_117: 1653911979
       Enemigos Mario_30: -1597110139
-      Enemigos Mario_75: -1221720122
       Enemigos Mario_101: 110937247
+      Enemigos Mario_75: -1221720122
       Enemigos Mario_109: 643935147
       Enemigos Mario_23: -2109362095
       Enemigos Mario_67: -1377680541

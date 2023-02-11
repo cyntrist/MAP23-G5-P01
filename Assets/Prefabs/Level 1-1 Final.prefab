@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Tube
       objectReference: {fileID: 0}
+    - target: {fileID: 6674804856706637341, guid: 9cf54bb0712974c4e8ad779e443a3e50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7011149562364189752, guid: 9cf54bb0712974c4e8ad779e443a3e50, type: 3}
     - {fileID: 7011149561995368139, guid: 9cf54bb0712974c4e8ad779e443a3e50, type: 3}
@@ -688,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8167628246686271094, guid: 665942c8da73e7e418118614e15e9b3b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3665978
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8167628246686271094, guid: 665942c8da73e7e418118614e15e9b3b, type: 3}
       propertyPath: m_LocalRotation.w
