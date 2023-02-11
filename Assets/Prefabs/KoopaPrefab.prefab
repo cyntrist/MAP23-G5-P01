@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: -5865512039462649832}
   - component: {fileID: 4499062864039724292}
   - component: {fileID: 4811442784889340907}
+  - component: {fileID: 3097634429552165594}
   m_Layer: 0
   m_Name: KoopaPrefab
   m_TagString: Untagged
@@ -194,6 +195,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &3097634429552165594
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952539484752954668}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0035322346, y: -0.053488225}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.24}
+    newSize: {x: 0.16, y: 0.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1367881, y: 0.13302353}
+  m_EdgeRadius: 0
 --- !u!1 &9197839175263347711
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,12 +281,12 @@ PolygonCollider2D:
     - - {x: -0.028963836, y: 0.11988659}
       - {x: -0.039396215, y: 0.119868435}
       - {x: -0.053374663, y: 0.11302405}
-      - {x: -0.073318794, y: 0.085791945}
-      - {x: -0.08189365, y: 0.05059533}
-      - {x: -0.081370965, y: 0.0065038437}
-      - {x: -0.038802344, y: 0.028208695}
-      - {x: 0.06953727, y: -0.0027248627}
-      - {x: 0.060996663, y: 0.017529843}
+      - {x: -0.05958806, y: 0.086936176}
+      - {x: -0.037268784, y: 0.06432606}
+      - {x: -0.0075682774, y: 0.032248963}
+      - {x: -0.007336084, y: 0.029925035}
+      - {x: 0.062099785, y: 0.01729912}
+      - {x: 0.04554959, y: 0.032404795}
       - {x: -0.005894158, y: 0.028577928}
       - {x: -0.0051613003, y: 0.0569218}
       - {x: -0.008398199, y: 0.08867333}
