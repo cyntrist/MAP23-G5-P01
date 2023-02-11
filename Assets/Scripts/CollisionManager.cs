@@ -44,6 +44,8 @@ public class CollisionManager : MonoBehaviour
         {
             _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
             _myMysteryBlock.DropPowerUp();
+            collision.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true; //se activa el render del empty block
+                                                                                                                 //al colisionar con mystery block
         }
         else if (collision.gameObject.CompareTag("InvisibleBlock"))
         { 
