@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int coins) // Solo add porque creo que nunca resta
     {
         _coins += coins;
+        Debug.Log("AddCoins");
     }
     public void RequestMarioChange(MarioStates state) // Para cambiar directamente a uno
     {
@@ -149,7 +150,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            _UIManager.UpdateGameHUD(_remainingTime); // Actualiza la información del HUD cada frame
+            _UIManager.UpdateGameHUD(_score, _coins, _remainingTime); // Actualiza la información del HUD cada frame
         }
     }
 

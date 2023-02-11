@@ -11,6 +11,8 @@ public class CollisionManager : MonoBehaviour
     private GameObject _myFlag;
     private Animator _myAnimator;
     private bool _muerto = false;
+    private bool _koopaMuerto = false;
+    private bool _coinPickup = false;
     private KoopaBehaviour _koopaBehaviour;
     private MovementComponent _myMovementComponent;
     #endregion
@@ -20,17 +22,17 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos Seta y somos chikitos
         {
-            //_myPowerupController.powerUpGrande(); // No funciona
+            _myPowerupController.powerUpGrande(); // A mi me funciona, si sigue dando problemas, hacer aquí un bool = true y llamada al método en fixed
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("1UP")) //si tocamos 1UP
         {
-            //GameManager.Instance.OneUp(); //No funciona creo q por las referencias mal
+            GameManager.Instance.OneUp(); // A mi me funciona, si sigue dando problemas, hacer aquí un bool = true y llamada al método en fixed
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("FireFlower") && GameManager.MarioState == GameManager.MarioStates.GRANDE) //si tocamos flor y somos grandes
         {
-            //_myPowerupController.powerUpFuego(); // No funciona
+            _myPowerupController.powerUpFuego(); // A mi me funciona, si sigue dando problemas, hacer aquí un bool = true y llamada al método en fixed
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("BrickBase") && GameManager.MarioState >= GameManager.MarioStates.GRANDE) //si tocamos brickbase 
@@ -64,7 +66,7 @@ public class CollisionManager : MonoBehaviour
             {
                 Debug.Log("CAGON"); // a veces crea 2 shells
                 _koopaBehaviour = collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>();
-                _koopaBehaviour.ShellDrop();
+                _koopaMuerto = true;
             }
             else
             {
@@ -76,12 +78,12 @@ public class CollisionManager : MonoBehaviour
         {
             Debug.Log("Tas muerto, Collider: " + collision.gameObject.name);
             _muerto = true;
-            // He movido el destroy() al fixed update para que éste se pueda ejecutar y ahí ya se destruye
         }
 
         else if (collision.gameObject.CompareTag("Coin")) //si tocamos moneda
         {
-            //GameManager.Instance.AddCoins(1); //No funciona por las referencias creo
+            _coinPickup = true; // Esto sí que estaba roto, arreglado de la misma manera (a veces suman 2 xd)
+            Debug.Log("+1 MONEDA");
             // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
             Destroy(collision.gameObject);
         }
@@ -140,6 +142,16 @@ public class CollisionManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_coinPickup)
+        {
+            GameManager.Instance.AddCoins(1);
+        }
+
+        if (_koopaMuerto && _koopaBehaviour != null)
+        {
+            _koopaBehaviour.ShellDrop();
+        }
+
         if (_muerto)
         {
             Debug.Log("Muerto");
@@ -147,6 +159,8 @@ public class CollisionManager : MonoBehaviour
             Destroy(gameObject);            // lo ultimisimo porque se destruye este script con él
         }
         _muerto = false;
+        _koopaMuerto = false;
+        _coinPickup = false;
     }
 }
 

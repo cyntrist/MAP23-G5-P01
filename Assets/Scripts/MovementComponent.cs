@@ -31,7 +31,7 @@ public class MovementComponent : MonoBehaviour
     {
         horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.Joystick1Button1)))
         {
             jump = true;
         }

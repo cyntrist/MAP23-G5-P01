@@ -26,10 +26,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.RequestStateChange((GameManager.GameStates)newState);
     }
 
-    public void UpdateGameHUD(float time) // Actualiza en cada frame los datos del HUD
+    public void UpdateGameHUD(int score, int coins, float time) // Actualiza en cada frame los datos del HUD
     {
-        _scoreTMP.text = (GameManager.Instance.Score).ToString("D6");
-        _coinsTMP.text = "x" + (GameManager.Instance.Coins).ToString("D2");
+        _scoreTMP.text = score.ToString("D6");
+        _coinsTMP.text = "x" + coins.ToString("D2");
         _remainingTimeTMP.text = "" + (int)time;
     }
 
