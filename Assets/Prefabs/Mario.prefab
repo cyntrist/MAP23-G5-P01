@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 7206110628009000039}
   - component: {fileID: -1654054333411064549}
   - component: {fileID: -1153269093513149710}
-  - component: {fileID: 1259543568854384434}
   m_Layer: 7
   m_Name: Mario
   m_TagString: Player
@@ -175,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24aeeb9b56beab74599622132abf8af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FXComponent: {fileID: 0}
   m_JumpForce: 1700
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f8018c01995c641b53414e8bf34439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FXComponent: {fileID: 0}
+  _OSTComponent: {fileID: 0}
 --- !u!61 &6896259849917492060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,21 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myTargetPoint: {fileID: 0}
---- !u!114 &1259543568854384434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773873051300140662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79c4003b7458e948a254c57a86e0e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fireBall: {fileID: 7922694049001649890, guid: dfd60690bcf6a0241be7505042063ffa, type: 3}
-  _force: {x: 2000, y: 0}
-  _firePoint: {fileID: 414268002767962544}
 --- !u!1 &6736343381035117226
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6981584963945520298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.066, y: -0.001, z: 0}
+  m_LocalPosition: {x: 0.09, y: -0.001, z: 0}
   m_LocalScale: {x: 0.038865, y: 0.034531668, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
