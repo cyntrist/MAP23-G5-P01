@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementComponent : MonoBehaviour
@@ -5,42 +6,29 @@ public class MovementComponent : MonoBehaviour
 
     public CharacterController2D controller;
     public Animator animator;
-    private Vector3 _myTargetPoint;
-    [SerializeField] GameObject _castle;
 
     public float runSpeed;
     float horizontalMove = 0f;
+    float crouchMove;
     bool jump = false;
     bool crouch = false;
-    [SerializeField] private float _stopDistance = 1.0f;
-
-
-    public void GoToCastle()
-    {
-        _myTargetPoint = _castle.transform.GetChild(0).gameObject.transform.position;
-        if ((_myTargetPoint - transform.position).magnitude > _stopDistance)
-        {
-            horizontalMove = (_myTargetPoint - transform.position).normalized.magnitude;
-            //_myCharacterController.Move(_movementSpeedVector * _movementSpeed * Time.deltaTime);
-            controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, crouch, jump);
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxis("CrucetaX") * runSpeed;
+        crouchMove = Input.GetAxis("Agacharse");
 
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.Joystick1Button1)))
+        if (Input.GetKeyDown(KeyCode.S) || (Input.GetKeyDown(KeyCode.Joystick1Button1)))
         {
             jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && GameManager._marioState != GameManager.MarioStates.PEQUE)
+        if (crouchMove != 0 && GameManager._marioState != GameManager.MarioStates.PEQUE)
         {
             crouch = true;
         }
-        else if (Input.GetKeyUp(KeyCode.S))
+        else if (crouchMove == 0)
         {
             crouch = false;
         }

@@ -15,6 +15,7 @@ public class CollisionManager : MonoBehaviour
     private bool _coinPickup = false;
     private KoopaBehaviour _koopaBehaviour;
     private MovementComponent _myMovementComponent;
+    private FinishComponent _myFinishComponent;
     #endregion
 
     #region Methods
@@ -47,19 +48,19 @@ public class CollisionManager : MonoBehaviour
             collision.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true; //se activa el render del empty block
                                                                                                                  //al colisionar con mystery block
         }
-        else if (collision.gameObject.CompareTag("InvisibleBlock"))
-        { 
-            collision.gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = true; //enables el Renderer al colisionar
-            collision.gameObject.transform.parent.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-        }
 
         else if (collision.gameObject.CompareTag("Flag"))
         {
-            gameObject.GetComponent<MovementComponent>().enabled = false;
+            _myMovementComponent.enabled = false;
             _myFlag = collision.gameObject;
             _myFlag.GetComponent<FlagComponent>().EndOfLevel(collision.gameObject);
-            _myFlag.GetComponent<BoxCollider2D>().enabled = false;
-            _myMovementComponent.GoToCastle();
+        }
+
+        else if (collision.gameObject.CompareTag("LastHardBlock"))
+        {
+            _myFlag.GetComponent<FlagComponent>().enabled = false;
+            collision.gameObject.transform.parent.gameObject.transform.GetChild(1).gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            _myFinishComponent.GoToCastle();
         }
 
         else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
@@ -111,6 +112,18 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("InvisibleBlock"))
+        {
+            collision.gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = true; //enables el Renderer al colisionar
+            collision.gameObject.transform.parent.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            collision.gameObject.transform.parent.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
+            _myMysteryBlock.DropPowerUp();
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("InvisibleTrigger"))
@@ -123,6 +136,7 @@ public class CollisionManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InvisibleTrigger"))
         {
+            other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             other.gameObject.transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
@@ -140,6 +154,7 @@ public class CollisionManager : MonoBehaviour
         _myPowerupController = gameObject.GetComponent<PowerupController>();
         _myAnimator = gameObject.GetComponent<Animator>();
         _myMovementComponent = gameObject.GetComponent<MovementComponent>();
+        _myFinishComponent = GetComponent<FinishComponent>();
     }
 
     private void FixedUpdate()

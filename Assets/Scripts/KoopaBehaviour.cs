@@ -9,7 +9,7 @@ public class KoopaBehaviour : MonoBehaviour
 
     public void ShellDrop()
     {
-        Instantiate(_shellPrefab);
+        Instantiate(_shellPrefab, transform.parent.gameObject.transform);
         _shellPrefab.transform.position = transform.position;
         Destroy(gameObject);
     }

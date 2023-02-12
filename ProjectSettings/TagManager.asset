@@ -24,6 +24,9 @@ TagManager:
   - 1UP
   - FireFlower
   - Star
+  - Tube
+  - AntiEnemyFall
+  - LastHardBlock
   layers:
   - Default
   - TransparentFX
@@ -34,8 +37,8 @@ TagManager:
   - Comprobador
   - Player
   - LeftCollider
-  - 
-  - 
+  - AntiEnemyFall
+  - Enemy
   - 
   - 
   - 

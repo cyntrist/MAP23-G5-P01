@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PowerupController : MonoBehaviour
 {
-
+    private FireShooting _myFireShooting;
     #region parameters
     [SerializeField]
     private float _escalaPowerup = 1.5f;
@@ -28,6 +28,7 @@ public class PowerupController : MonoBehaviour
 
     public void powerUpFuego()
     {
+        _myFireShooting.enabled = true;
 
     }
 
@@ -40,6 +41,7 @@ public class PowerupController : MonoBehaviour
 
     void Start()
     {
-        //_myDisparaFuego= _player.GetComponent<DisparaFuego>;
+        _myFireShooting = GetComponent<FireShooting>();
+        _myFireShooting.enabled = false;
     }
 }

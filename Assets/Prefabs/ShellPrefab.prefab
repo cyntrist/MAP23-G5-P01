@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5517820630218768621}
   - component: {fileID: 6980718763689569409}
   - component: {fileID: 4513769006748078499}
+  - component: {fileID: 8881731877721162311}
   m_Layer: 0
   m_Name: ShellPrefab
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389865949757549509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.22532, y: -9.67, z: 0}
+  m_LocalPosition: {x: 17.299046, y: -9.61, z: 0}
   m_LocalScale: {x: 6.9741497, y: 6.9741497, z: 6.9741497}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,3 +118,24 @@ PolygonCollider2D:
       - {x: 0.08, y: -0.07}
       - {x: 0.08, y: 0.04}
       - {x: 0.06, y: 0.07}
+--- !u!50 &8881731877721162311
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389865949757549509}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

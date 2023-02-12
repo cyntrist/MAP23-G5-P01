@@ -2,18 +2,27 @@ using UnityEngine;
 
 public class FlagComponent : MonoBehaviour
 {
-    [SerializeField] GameObject _entireFlag;
+    private GameObject _Flag;
+    private bool _flagDown;
     [SerializeField] float _flagSpeed;
-    [SerializeField] Transform _castleTransform;
 
-    public void EndOfLevel(GameObject entireFlag)
+    public void EndOfLevel(GameObject Flag)
     {
-        _entireFlag = entireFlag;
         Debug.Log("Has ganao majo");
+        _Flag = Flag.transform.parent.gameObject;
+        _flagDown = true;
+    }
 
-        if (_entireFlag.transform.GetChild(0).position.y > _entireFlag.transform.GetChild(3).position.y)
+    private void Update()
+    {
+        if (_flagDown && (_Flag.transform.GetChild(0).position.y > _Flag.transform.GetChild(3).position.y))
         {
-            _entireFlag.transform.GetChild(0).position -= new Vector3(0, _flagSpeed * Time.deltaTime, 0);
+            _Flag.transform.GetChild(0).position -= new Vector3(0, _flagSpeed * Time.deltaTime, 0);
         }
+    }
+
+    private void Start()
+    {
+        _flagDown = true;
     }
 }
