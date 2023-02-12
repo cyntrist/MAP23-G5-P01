@@ -4,9 +4,8 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 
-    AudioSource m_AudioSource;
     [SerializeField]
-    AudioClip m_Clip1;
+    private FXComponent _FXComponent;
 
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
     [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;           // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -143,8 +142,7 @@ public class CharacterController2D : MonoBehaviour
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
-            m_AudioSource.volume = 1;
-            m_AudioSource.PlayOneShot(m_Clip1);
+            _FXComponent.PlaySound(6);
         }
     }
 
@@ -155,10 +153,5 @@ public class CharacterController2D : MonoBehaviour
 
         // Multiply the player's x local scale by -1.
         transform.Rotate(0f, 180f, 0f);
-    }
-
-    private void Start()
-    {
-        m_AudioSource = GetComponent<AudioSource>();
     }
 }

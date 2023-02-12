@@ -6,20 +6,18 @@ using UnityEngine.Analytics;
 
 public class FXComponent : MonoBehaviour
 {
-    public static FXComponent _FXinstance;       // Instancia privada del singleton
-
-    public static AudioClip _1Up;               //0
-    public static AudioClip _brickSmash;        //1
-    public static AudioClip _bump;              //2
-    public static AudioClip _coin;              //3
-    public static AudioClip _downTheFlagpole;   //4
-    public static AudioClip _fireBall;          //5
-    public static AudioClip _jump;              //6
-    public static AudioClip _kick;              //7
-    public static AudioClip _pause;             //8
-    public static AudioClip _powerUp;           //9
-    public static AudioClip _powerUpAppears;    //10
-    public static AudioClip _stomp;             //11
+    public AudioClip _1Up;               //0
+    public AudioClip _brickSmash;        //1
+    public AudioClip _bump;              //2
+    public AudioClip _coin;              //3
+    public AudioClip _downTheFlagpole;   //4
+    public AudioClip _fireBall;          //5
+    public AudioClip _jump;              //6
+    public AudioClip _kick;              //7
+    public AudioClip _pause;             //8
+    public AudioClip _powerUp;           //9
+    public AudioClip _powerUpAppears;    //10
+    public AudioClip _stomp;             //11
 
     public static AudioSource _myAudioSource;
     void Start()
@@ -92,9 +90,5 @@ public class FXComponent : MonoBehaviour
                     break;
                 }
         }
-    }
-    private void Awake()
-    {
-        _FXinstance = this; // Para que este FXComponent sea accesible a través de GameManager.Instance en otros scripts y objetos
     }
 }

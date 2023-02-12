@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private UIManager _UIManager;           // Referencia al UIManager
     [SerializeField] GameObject _level;     // Referencia al prefab del nivel 1-1
     private CollisionManager _collisionManager; //referencia al collision manager
-    private OSTComponent _ostComponent;          //Referencia al OSTComponent
+    public OSTComponent _ostComponent;          //Referencia al OSTComponent
     #endregion
 
     #region properties
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            _ostComponent.PlaySound(1);
             _nextState = GameStates.GAMEOVER;
         }
     }
@@ -138,10 +139,6 @@ public class GameManager : MonoBehaviour
 
         if (state == GameStates.GAME) // GAME: cuenta atrás o vidas a 0 + actualizar HUD cada frame
         {
-            if ((int)_remainingTime == (int)TIEMPOJUEGO)
-            {
-                
-            }
             _remainingTime -= Time.deltaTime; // Cuenta atrás
             if (_remainingTime < 0) // Si se acaba el tiempo o las vidas
             {
@@ -171,11 +168,14 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel() // Instancia el lvl y ya
     {
+
+        _ostComponent.PlaySound(0);
         _levelInstance = Instantiate(_level, Vector3.zero, Quaternion.identity);
     }
 
     private void UnloadLevel() // Lo destruye y ya
     {
+        _ostComponent.PlaySound(2);
         Destroy(_levelInstance);
     }
 

@@ -6,11 +6,9 @@ public class CollisionManager : MonoBehaviour
     #endregion
 
     #region references
-    AudioSource m_AudioSource;
     [SerializeField]
-    AudioClip m_ClipCoin;
-    [SerializeField]
-    AudioClip m_Clipdie;
+    private FXComponent _FXComponent;
+    public OSTComponent _OSTComponent;
 
     private PowerupController _myPowerupController;
     private MysteryBlockComponent _myMysteryBlock;
@@ -29,11 +27,13 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Seta") && GameManager.MarioState == GameManager.MarioStates.PEQUE) //si tocamos Seta y somos chikitos
         {
+            _FXComponent.PlaySound(0);
             _myPowerupController.powerUpGrande(); // A mi me funciona, si sigue dando problemas, hacer aquí un bool = true y llamada al método en fixed
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("1UP")) //si tocamos 1UP
         {
+            _FXComponent.PlaySound(0);
             GameManager.Instance.OneUp(); // A mi me funciona, si sigue dando problemas, hacer aquí un bool = true y llamada al método en fixed
             Destroy(collision.gameObject);
         }
@@ -51,15 +51,20 @@ public class CollisionManager : MonoBehaviour
         {
             _myMysteryBlock = collision.gameObject.GetComponent<MysteryBlockComponent>();
             _myMysteryBlock.DropPowerUp();
+            _FXComponent.PlaySound(1);
             collision.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true; //se activa el render del empty block
                                                                                                                  //al colisionar con mystery block
         }
 
         else if (collision.gameObject.CompareTag("Flag"))
         {
+            _FXComponent.PlaySound(4);
             _myMovementComponent.enabled = false;
             _myFlag = collision.gameObject;
             _myFlag.GetComponent<FlagComponent>().EndOfLevel(collision.gameObject);
+            GameObject _myOSTObject = GameObject.Find("OSTComponent");
+            _OSTComponent = _myOSTObject.GetComponent<OSTComponent>();
+            _OSTComponent.PlaySound(3);
         }
 
         else if (collision.gameObject.CompareTag("LastHardBlock"))
@@ -71,6 +76,7 @@ public class CollisionManager : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Cabeza")) //si tocamos enemy
         {
+            _FXComponent.PlaySound(7);
             if (collision.gameObject.transform.parent.GetComponent<KoopaBehaviour>() != null)
             {
                 Debug.Log("CAGON"); // a veces crea 2 shells
@@ -94,7 +100,9 @@ public class CollisionManager : MonoBehaviour
             _coinPickup = true; // Esto sí que estaba roto, arreglado de la misma manera (a veces suman 2 xd)
             Debug.Log("+1 MONEDA");
             // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
-            m_AudioSource.PlayOneShot(m_ClipCoin);
+            Debug.Log("sondio moneda");
+            _FXComponent.PlaySound(3);
+            Debug.Log("se acabó sonido moneda");
             Destroy(collision.gameObject);
         }
     }
@@ -108,7 +116,8 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log(GameManager._marioState);
                 _myPowerupController.powerDownGrande();
                 GameManager.Instance.i_frames = true;
-                m_AudioSource.PlayOneShot(m_Clipdie);
+                Debug.Log("Sonido bajar vida");
+                _FXComponent.PlaySound(2);
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
@@ -159,7 +168,6 @@ public class CollisionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_AudioSource = GetComponent<AudioSource>();
         _myPowerupController = gameObject.GetComponent<PowerupController>();
         _myAnimator = gameObject.GetComponent<Animator>();
         _myMovementComponent = gameObject.GetComponent<MovementComponent>();
@@ -181,6 +189,7 @@ public class CollisionManager : MonoBehaviour
         if (_muerto)
         {
             Debug.Log("Muerto");
+            _FXComponent.PlaySound(11);
             GameManager.Instance.OneDown();
             Destroy(gameObject);            // lo ultimisimo porque se destruye este script con él
         }

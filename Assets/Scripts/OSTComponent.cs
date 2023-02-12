@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class OSTComponent : MonoBehaviour
 {
-    public static AudioClip _runningAbout; //0
-    public static AudioClip _gameOver;     //1
-    public static AudioClip _marioDies;    //2
-    public static AudioClip _stageClear;   //3
+    public AudioClip _runningAbout; //0
+    public AudioClip _gameOver;     //1
+    public AudioClip _marioDies;    //2
+    public AudioClip _stageClear;   //3
 
     public static AudioSource _myAudioSource;
     void Start()
@@ -22,6 +22,7 @@ public class OSTComponent : MonoBehaviour
         {
             case 0:
                 {
+                    _myAudioSource.Stop();
                     _myAudioSource.loop = true;
                     _myAudioSource.PlayOneShot(_runningAbout);
                     break;
@@ -40,14 +41,11 @@ public class OSTComponent : MonoBehaviour
                 }
             case 3:
                 {
+                    _myAudioSource.Stop();
                     _myAudioSource.loop = false;
                     _myAudioSource.PlayOneShot(_stageClear);
                     break;
                 }
         }
-    }
-    private void Awake()
-    {
-        GameManager.Instance.RegisterOSTComponent(this);
     }
 }
