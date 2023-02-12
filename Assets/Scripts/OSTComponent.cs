@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class OSTComponent : MonoBehaviour
 {
-    private static OSTComponent _instance; // Instancia privada del singleton
-
     public static AudioClip _runningAbout; //0
     public static AudioClip _gameOver;     //1
     public static AudioClip _marioDies;    //2
@@ -18,7 +16,7 @@ public class OSTComponent : MonoBehaviour
        _myAudioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySound(int clip)
+    public void PlaySound(int clip)
     {
         switch (clip)
         {
@@ -50,6 +48,6 @@ public class OSTComponent : MonoBehaviour
     }
     private void Awake()
     {
-        _instance = this; // Para que este OSTComponent sea accesible a través de GameManager.Instance en otros scripts y objetos
+        GameManager.Instance.RegisterOSTComponent(this);
     }
 }

@@ -16,7 +16,7 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("CrucetaX") * runSpeed;
+        horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
         crouchMove = Input.GetAxis("Agacharse");
 
         if (Input.GetKeyDown(KeyCode.S) || (Input.GetKeyDown(KeyCode.Joystick1Button1)))

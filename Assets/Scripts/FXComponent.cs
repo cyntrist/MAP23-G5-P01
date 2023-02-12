@@ -6,7 +6,7 @@ using UnityEngine.Analytics;
 
 public class FXComponent : MonoBehaviour
 {
-    private static FXComponent _instance;       // Instancia privada del singleton
+    public static FXComponent _FXinstance;       // Instancia privada del singleton
 
     public static AudioClip _1Up;               //0
     public static AudioClip _brickSmash;        //1
@@ -27,7 +27,7 @@ public class FXComponent : MonoBehaviour
         _myAudioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySound(int clip)
+    public void PlaySound(int clip)
     {
         switch (clip)
         {
@@ -95,6 +95,6 @@ public class FXComponent : MonoBehaviour
     }
     private void Awake()
     {
-        _instance = this; // Para que este FXComponent sea accesible a través de GameManager.Instance en otros scripts y objetos
+        _FXinstance = this; // Para que este FXComponent sea accesible a través de GameManager.Instance en otros scripts y objetos
     }
 }

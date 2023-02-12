@@ -6,6 +6,12 @@ public class CollisionManager : MonoBehaviour
     #endregion
 
     #region references
+    AudioSource m_AudioSource;
+    [SerializeField]
+    AudioClip m_ClipCoin;
+    [SerializeField]
+    AudioClip m_Clipdie;
+
     private PowerupController _myPowerupController;
     private MysteryBlockComponent _myMysteryBlock;
     private GameObject _myFlag;
@@ -88,6 +94,7 @@ public class CollisionManager : MonoBehaviour
             _coinPickup = true; // Esto sí que estaba roto, arreglado de la misma manera (a veces suman 2 xd)
             Debug.Log("+1 MONEDA");
             // GameManager.Instance.AddScore(x); dan puntuacion?? -Cynthia
+            m_AudioSource.PlayOneShot(m_ClipCoin);
             Destroy(collision.gameObject);
         }
     }
@@ -101,6 +108,7 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log(GameManager._marioState);
                 _myPowerupController.powerDownGrande();
                 GameManager.Instance.i_frames = true;
+                m_AudioSource.PlayOneShot(m_Clipdie);
             }
             else if (GameManager.MarioState == GameManager.MarioStates.PEQUE)
             {
@@ -151,6 +159,7 @@ public class CollisionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_AudioSource = GetComponent<AudioSource>();
         _myPowerupController = gameObject.GetComponent<PowerupController>();
         _myAnimator = gameObject.GetComponent<Animator>();
         _myMovementComponent = gameObject.GetComponent<MovementComponent>();
@@ -179,5 +188,8 @@ public class CollisionManager : MonoBehaviour
         _koopaMuerto = false;
         _coinPickup = false;
     }
+
+    
+    
 }
 

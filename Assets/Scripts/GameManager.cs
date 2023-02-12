@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private UIManager _UIManager;           // Referencia al UIManager
     [SerializeField] GameObject _level;     // Referencia al prefab del nivel 1-1
     private CollisionManager _collisionManager; //referencia al collision manager
+    private OSTComponent _ostComponent;          //Referencia al OSTComponent
     #endregion
 
     #region properties
@@ -45,6 +46,10 @@ public class GameManager : MonoBehaviour
     public void RegisterCollisionManager(CollisionManager collisionManager)
     {
         _collisionManager = collisionManager;
+    }
+    public void RegisterOSTComponent(OSTComponent ostComponent)
+    {
+        _ostComponent = ostComponent;
     }
 
     // BLOQUE DE JUEGO 
@@ -109,6 +114,7 @@ public class GameManager : MonoBehaviour
                 LoadLevel();                             // Instancia el nivel
                 _UIManager.SetUpGameHUD(_remainingTime); // Inicializa valores del HUD
                 _UIManager.SetMenu(GameStates.GAME);     // Activa HUD
+                Debug.Log("Entramos en nivel");
                 break;
             case GameStates.GAMEOVER:                    //     *FIN DEL JUEGO*
                 UnloadLevel();                           // Descarga el nivel
@@ -132,6 +138,10 @@ public class GameManager : MonoBehaviour
 
         if (state == GameStates.GAME) // GAME: cuenta atrás o vidas a 0 + actualizar HUD cada frame
         {
+            if ((int)_remainingTime == (int)TIEMPOJUEGO)
+            {
+                
+            }
             _remainingTime -= Time.deltaTime; // Cuenta atrás
             if (_remainingTime < 0) // Si se acaba el tiempo o las vidas
             {
