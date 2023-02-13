@@ -34,6 +34,7 @@ public class FinishComponent : MonoBehaviour
             _cuentaAtras -= Time.deltaTime; //para que le de tiempo a la musiquilla
             if (_cuentaAtras <= 0) 
             {
+                GameManager.Instance.win = true;
                 GameManager.Instance.RequestStateChange(GameManager.GameStates.START);
             }
         }
