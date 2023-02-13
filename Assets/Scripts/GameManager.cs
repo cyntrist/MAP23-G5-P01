@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
         else
         {
             _ostComponent.PlaySound(1);
-            _nextState = GameStates.GAMEOVER;
+            _nextState = GameStates.START;
+            _lives = 3;
         }
     }
     public void AddScore(int points) // Solo add porque nunca se restan
@@ -96,6 +97,10 @@ public class GameManager : MonoBehaviour
     // BLOQUE DE MÁQUINA DE ESTADOS DEL JUEGO
     public void EnterState(GameStates newState)
     {
+        if (_levelInstance != null)
+        {
+            UnloadLevel();                       // Si el nivel existe lo destruye
+        }
         switch (newState) // Diferentes comportamientos según estado al que se entra
         { // En sí, solo cambia el grupo de UI por cada estado y en GAME carga el nivel
             case GameStates.START:                       //     *MENÚ INICIAL*
@@ -103,10 +108,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.INTRO:                       //     *INTRO* (Pantalla en negro con las vidas antes de cargar el lvl)
                 _introTime = TIEMPOINTRO;                // Reinicia el timer
-                if (_levelInstance != null)
-                {
-                    UnloadLevel();                       // Si el nivel existe lo destruye
-                }
                 _UIManager.SetLives(_lives);             // Inicializa valores de vida en la UI
                 _UIManager.SetMenu(GameStates.INTRO);    // Activa menú intro
                 break;

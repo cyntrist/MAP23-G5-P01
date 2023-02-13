@@ -41,7 +41,10 @@ public class PowerupController : MonoBehaviour
 
     void Start()
     {
-        _myFireShooting = GetComponent<FireShooting>();
-        _myFireShooting.enabled = false;
+        if (_myFireShooting != null) 
+        {
+            _myFireShooting = GetComponent<FireShooting>();
+            _myFireShooting.enabled = false;
+        }
     }
 }

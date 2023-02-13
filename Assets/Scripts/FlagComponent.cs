@@ -13,6 +13,7 @@ public class FlagComponent : MonoBehaviour
         _flagDown = true;
     }
 
+    /*
     private void Update()
     {
         if (_flagDown && (_Flag.transform.GetChild(0).position.y > _Flag.transform.GetChild(3).position.y))
@@ -20,6 +21,7 @@ public class FlagComponent : MonoBehaviour
             _Flag.transform.GetChild(0).position -= new Vector3(0, _flagSpeed * Time.deltaTime, 0);
         }
     }
+    */
 
     private void Start()
     {
