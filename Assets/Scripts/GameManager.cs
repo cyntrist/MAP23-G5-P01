@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     #region properties
     public bool i_frames = false;
+    public bool win = false;
     private int tiempo_inmortal;
     private const int TIEMPOJUEGO = 300;
     private const int TIEMPOINTRO = 3;
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.INTRO:                       //     *INTRO* (Pantalla en negro con las vidas antes de cargar el lvl)
                 _introTime = TIEMPOINTRO;                // Reinicia el timer
+                win = false;
                 _UIManager.SetLives(_lives);             // Inicializa valores de vida en la UI
                 _UIManager.SetMenu(GameStates.INTRO);    // Activa menú intro
                 break;
@@ -176,7 +178,10 @@ public class GameManager : MonoBehaviour
 
     private void UnloadLevel() // Lo destruye y ya
     {
-        _ostComponent.PlaySound(2);
+        if(!win)
+        {
+            _ostComponent.PlaySound(2);
+        }
         Destroy(_levelInstance);
     }
 
